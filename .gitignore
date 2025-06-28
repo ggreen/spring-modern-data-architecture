@@ -1,0 +1,26 @@
+.idea/
+ConfigDiskDir_SpringBasedLocatorApplication
+ConfigDiskDir_locator1
+*.pid
+.DS_Store
+*.dat
+.jekyll-cache/
+.DS_Store
+.m2/
+_site/
+Gemfile.lock
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+Gemfile
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+# https://github.com/takari/maven-wrapper#usage-without-binary-jar
+.mvn/wrapper/maven-wrapper.jar
+/deployments/cloud/secret/
+.sass-cache
+/deployments/cloud/educates/lab-modern-spring-data/data-services/.secret/
