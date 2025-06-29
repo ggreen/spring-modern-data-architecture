@@ -15,7 +15,7 @@ import com.vmware.retail.repository.gemfire.ProductGemFireRepository;
 import com.vmware.retail.repository.gemfire.PromotionGemFireRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.geode.cache.DataPolicy;
-import org.apache.geode.cache.GemFireCache;
+import org.apache.geode.cache.client.ClientCache;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -39,7 +39,7 @@ public class GemFireConfig {
     }
 
     @Bean("CustomerFavorites")
-    public ClientRegionFactoryBean<String, CustomerFavorites> customerFavorites(GemFireCache gemFireCache){
+    public ClientRegionFactoryBean<String, CustomerFavorites> customerFavorites(ClientCache gemFireCache){
         var factory = new ClientRegionFactoryBean<String, CustomerFavorites>();
         factory.setName("CustomerFavorites");
         factory.setCache(gemFireCache);
@@ -48,7 +48,7 @@ public class GemFireConfig {
     }
 
     @Bean("Product")
-    public ClientRegionFactoryBean<String, Product> product(GemFireCache gemFireCache){
+    public ClientRegionFactoryBean<String, Product> product(ClientCache gemFireCache){
         var factory = new ClientRegionFactoryBean<String, Product>();
         factory.setName("Product");
         factory.setCache(gemFireCache);
@@ -57,7 +57,7 @@ public class GemFireConfig {
     }
 
     @Bean("Promotion")
-    public ClientRegionFactoryBean<String, Promotion> promotion(GemFireCache gemFireCache){
+    public ClientRegionFactoryBean<String, Promotion> promotion(ClientCache gemFireCache){
         var factory = new ClientRegionFactoryBean<String, Promotion>();
         factory.setName("Promotion");
         factory.setCache(gemFireCache);

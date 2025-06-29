@@ -1,0 +1,18 @@
+name: Starter Workshop
+modules:
+  activate:
+  - workshop-overview
+  - setup-environment
+  - exercises/01-web-real-time-gemfire-redis
+  - exercises/02-streaming-analytics-rabbit-postgres
+  - workshop-summary
+spec:
+  session:
+    applications:
+      vcluster:
+        enabled: true
+        resources:
+          syncer:
+            memory: 9Gi
+          k3s:
+            memory: 10Gi
