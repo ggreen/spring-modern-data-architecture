@@ -12,10 +12,10 @@ import com.vmware.retail.analytics.entity.ProductOrderEntity;
 import com.vmware.retail.analytics.repository.CustomerOrderRepository;
 import com.vmware.retail.analytics.service.CustomerAnalyticService;
 import com.vmware.retail.analytics.service.CustomerOrderService;
-import com.vmware.retail.domain.order.CustomerOrder;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import spring.modern.data.domains.customer.order.CustomerOrder;
 
 @Service
 @AllArgsConstructor

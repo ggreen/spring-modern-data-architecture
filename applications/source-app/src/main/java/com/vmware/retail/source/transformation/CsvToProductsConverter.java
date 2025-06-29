@@ -1,11 +1,11 @@
 package com.vmware.retail.source.transformation;
 
-import com.vmware.retail.domain.Product;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import nyla.solutions.core.io.csv.CsvReader;
 import nyla.solutions.core.patterns.conversion.Converter;
 import org.springframework.stereotype.Component;
+import spring.modern.data.domains.customer.Product;
 
 import java.io.StringReader;
 import java.util.ArrayList;

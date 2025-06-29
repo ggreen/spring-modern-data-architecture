@@ -7,7 +7,7 @@
 
 package com.vmware.retail.repository.gemfire;
 
-import com.vmware.retail.domain.Product;
+import spring.modern.data.domains.customer.Product;
 import com.vmware.retail.repository.ProductRepository;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.gemfire.repository.GemfireRepository;

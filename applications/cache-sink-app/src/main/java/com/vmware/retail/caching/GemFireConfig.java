@@ -7,9 +7,6 @@
 
 package com.vmware.retail.caching;
 
-import com.vmware.retail.domain.CustomerFavorites;
-import com.vmware.retail.domain.Product;
-import com.vmware.retail.domain.Promotion;
 import com.vmware.retail.repository.gemfire.CustomerFavoriteGemFireRepository;
 import com.vmware.retail.repository.gemfire.ProductGemFireRepository;
 import com.vmware.retail.repository.gemfire.PromotionGemFireRepository;
@@ -23,6 +20,9 @@ import org.springframework.data.gemfire.client.ClientRegionFactoryBean;
 import org.springframework.data.gemfire.config.annotation.ClientCacheApplication;
 import org.springframework.data.gemfire.config.annotation.EnableSecurity;
 import org.springframework.data.gemfire.repository.config.EnableGemfireRepositories;
+import spring.modern.data.domains.customer.CustomerFavorites;
+import spring.modern.data.domains.customer.Product;
+import spring.modern.data.domains.customer.Promotion;
 
 
 @Profile("gemfire")

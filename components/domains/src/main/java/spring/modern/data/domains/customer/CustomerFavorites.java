@@ -5,7 +5,7 @@
  *
  */
 
-package com.vmware.retail.domain;
+package spring.modern.data.domains.customer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

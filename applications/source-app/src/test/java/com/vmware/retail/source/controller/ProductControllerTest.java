@@ -7,7 +7,6 @@
 
 package com.vmware.retail.source.controller;
 
-import com.vmware.retail.domain.Product;
 import nyla.solutions.core.patterns.conversion.Converter;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +15,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import spring.modern.data.domains.customer.Product;
 
 import java.util.List;
 

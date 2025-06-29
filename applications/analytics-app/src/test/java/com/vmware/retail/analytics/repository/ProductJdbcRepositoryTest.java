@@ -8,19 +8,18 @@
 package com.vmware.retail.analytics.repository;
 
 import com.vmware.retail.analytics.repository.jdbc.ProductJdbcRepository;
-import com.vmware.retail.domain.CustomerFavorites;
-import com.vmware.retail.domain.Product;
-import com.vmware.retail.domain.order.ProductOrder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import spring.modern.data.domains.customer.CustomerFavorites;
+import spring.modern.data.domains.customer.Product;
+import spring.modern.data.domains.customer.order.ProductOrder;
 
 import java.util.List;
 import java.util.Map;
@@ -76,7 +75,7 @@ class ProductJdbcRepositoryTest {
     @Test
     void given_products_when_findFrequently_then_return_products() {
 
-        Product product = new Product("id","name");
+        var product = new Product("id","name");
         List<Product> expected = asList(product);
 
         when(namedParameterJdbcTemplate.query(anyString(),anyMap(),any(RowMapper.class))).thenReturn(expected);

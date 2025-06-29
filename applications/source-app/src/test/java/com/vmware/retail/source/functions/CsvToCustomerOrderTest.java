@@ -7,14 +7,13 @@
 
 package com.vmware.retail.source.functions;
 
-import com.vmware.retail.domain.customer.CustomerIdentifier;
-import com.vmware.retail.domain.order.CustomerOrder;
-import com.vmware.retail.domain.order.ProductOrder;
-import com.vmware.retail.source.functions.CsvToCustomerOrder;
 import nyla.solutions.core.exception.TooManyRowsException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import spring.modern.data.domains.customer.CustomerIdentifier;
+import spring.modern.data.domains.customer.order.CustomerOrder;
+import spring.modern.data.domains.customer.order.ProductOrder;
 
 import java.util.List;
 

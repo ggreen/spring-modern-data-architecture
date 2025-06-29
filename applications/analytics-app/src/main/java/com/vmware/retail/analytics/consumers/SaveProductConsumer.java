@@ -8,10 +8,9 @@
 package com.vmware.retail.analytics.consumers;
 
 import com.vmware.retail.analytics.repository.ProductRepository;
-import com.vmware.retail.domain.Product;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import spring.modern.data.domains.customer.Product;
 
 import java.util.List;
 import java.util.function.Consumer;

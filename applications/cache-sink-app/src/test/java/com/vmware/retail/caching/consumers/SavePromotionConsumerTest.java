@@ -7,14 +7,13 @@
 
 package com.vmware.retail.caching.consumers;
 
-import com.vmware.retail.domain.Promotion;
 import com.vmware.retail.repository.PromotionRepository;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
-import nyla.solutions.core.patterns.integration.Publisher;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import spring.modern.data.domains.customer.Promotion;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;

@@ -5,11 +5,11 @@
  *
  */
 
-package com.vmware.retail.domain.order;
+package spring.modern.data.domains.customer.order;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vmware.retail.domain.customer.CustomerIdentifier;
+import spring.modern.data.domains.customer.CustomerIdentifier;
 import org.junit.jupiter.api.Test;
 
 import static java.util.Arrays.asList;

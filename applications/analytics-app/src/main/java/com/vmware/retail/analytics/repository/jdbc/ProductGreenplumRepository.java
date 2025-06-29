@@ -8,7 +8,6 @@
 package com.vmware.retail.analytics.repository.jdbc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vmware.retail.domain.Product;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +15,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+import spring.modern.data.domains.customer.Product;
 
 import java.util.List;
 import java.util.Map;

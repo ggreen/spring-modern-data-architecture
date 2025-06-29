@@ -7,9 +7,9 @@
 
 package com.vmware.retail;
 
-import com.vmware.retail.domain.CustomerFavorites;
-import com.vmware.retail.domain.Product;
-import com.vmware.retail.domain.Promotion;
+import spring.modern.data.domains.customer.CustomerFavorites;
+import spring.modern.data.domains.customer.Product;
+import spring.modern.data.domains.customer.Promotion;
 import com.vmware.retail.events.CacheListerConsumerBridge;
 import com.vmware.retail.repository.gemfire.CustomerFavoriteGemFireRepository;
 import com.vmware.retail.repository.gemfire.ProductGemFireRepository;

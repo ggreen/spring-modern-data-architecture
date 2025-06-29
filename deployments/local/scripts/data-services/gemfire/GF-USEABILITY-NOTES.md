@@ -4,11 +4,11 @@ ERR Unknown subcommand or wrong number of arguments for 'LIST'. Supported subcom
 
 
 
-java.lang.IllegalArgumentException: DefaultSerializer requires a Serializable payload but received an object of type [com.vmware.retail.domain.Promotion]
+java.lang.IllegalArgumentException: DefaultSerializer requires a Serializable payload but received an object of type [spring.modern.data.domains.customer.Promotion]
 at org.springframework.core.serializer.DefaultSerializer.serialize(DefaultSerializer
 
 
 JSON has large payloads
 
 
-body:[B@5f746944 channel:{"@class":"com.vmware.retail.domain.Promotion","id":"string","products":["java.util.ArrayList",[{"@class":"com.vmware.retail.domain.Product","id":"string","name":"string"}]]}
+body:[B@5f746944 channel:{"@class":"spring.modern.data.domains.customer.Promotion","id":"string","products":["java.util.ArrayList",[{"@class":"spring.modern.data.domains.customer.Product","id":"string","name":"string"}]]}

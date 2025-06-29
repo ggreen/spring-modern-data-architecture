@@ -5,7 +5,7 @@
  *
  */
 
-package com.vmware.retail.domain.customer;
+package spring.modern.data.domains.customer;
 
 /**
  Example JSON

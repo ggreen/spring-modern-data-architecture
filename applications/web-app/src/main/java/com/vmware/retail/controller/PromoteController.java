@@ -7,7 +7,7 @@
 
 package com.vmware.retail.controller;
 
-import com.vmware.retail.domain.Promotion;
+import spring.modern.data.domains.customer.Promotion;
 import com.vmware.retail.repository.PromotionRepository;
 import org.springframework.web.bind.annotation.*;
 

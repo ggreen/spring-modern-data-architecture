@@ -7,15 +7,13 @@
 
 package com.vmware.retail.controller;
 
-import com.vmware.retail.domain.Product;
+import spring.modern.data.domains.customer.Product;
 import com.vmware.retail.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Locale;
-
-import static java.util.Arrays.asList;
 
 /**
  * ProductController

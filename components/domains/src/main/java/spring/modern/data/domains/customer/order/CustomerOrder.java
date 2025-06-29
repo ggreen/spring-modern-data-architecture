@@ -5,9 +5,9 @@
  *
  */
 
-package com.vmware.retail.domain.order;
+package spring.modern.data.domains.customer.order;
 
-import com.vmware.retail.domain.customer.CustomerIdentifier;
+import spring.modern.data.domains.customer.CustomerIdentifier;
 
 import java.util.List;
 

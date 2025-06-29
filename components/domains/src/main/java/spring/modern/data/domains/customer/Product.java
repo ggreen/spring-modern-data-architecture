@@ -5,7 +5,7 @@
  *
  */
 
-package com.vmware.retail.domain;
+package spring.modern.data.domains.customer;
 
 public record Product(String id, String name)
 {

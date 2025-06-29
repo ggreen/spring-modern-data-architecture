@@ -7,7 +7,7 @@
 
 package com.vmware.retail.controller;
 
-import com.vmware.retail.domain.CustomerFavorites;
+import spring.modern.data.domains.customer.CustomerFavorites;
 import com.vmware.retail.repository.CustomerFavoriteRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;

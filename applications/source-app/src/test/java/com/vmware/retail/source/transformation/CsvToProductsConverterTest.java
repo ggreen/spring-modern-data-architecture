@@ -1,10 +1,10 @@
 package com.vmware.retail.source.transformation;
 
-import com.vmware.retail.domain.Product;
 import nyla.solutions.core.io.IO;
 import nyla.solutions.core.io.csv.CsvWriter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import spring.modern.data.domains.customer.Product;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

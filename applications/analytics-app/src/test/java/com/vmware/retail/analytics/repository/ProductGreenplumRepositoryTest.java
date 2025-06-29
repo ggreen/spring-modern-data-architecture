@@ -8,31 +8,23 @@
 package com.vmware.retail.analytics.repository;
 
 import com.vmware.retail.analytics.repository.jdbc.ProductGreenplumRepository;
-import com.vmware.retail.analytics.repository.jdbc.ProductJdbcRepository;
-import com.vmware.retail.domain.CustomerFavorites;
-import com.vmware.retail.domain.Product;
-import com.vmware.retail.domain.order.ProductOrder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowCallbackHandler;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import spring.modern.data.domains.customer.Product;
 
 import java.util.List;
 import java.util.Map;
-import java.util.TreeSet;
 
 import static java.util.Arrays.asList;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static reactor.core.publisher.Mono.when;
 
 @ExtendWith(MockitoExtension.class)
 class ProductGreenplumRepositoryTest {

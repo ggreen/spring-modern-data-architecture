@@ -8,13 +8,13 @@
 package com.vmware.retail.analytics.consumers;
 
 import com.vmware.retail.analytics.service.CustomerOrderService;
-import com.vmware.retail.domain.customer.CustomerIdentifier;
-import com.vmware.retail.domain.order.CustomerOrder;
-import com.vmware.retail.domain.order.ProductOrder;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import spring.modern.data.domains.customer.CustomerIdentifier;
+import spring.modern.data.domains.customer.order.CustomerOrder;
+import spring.modern.data.domains.customer.order.ProductOrder;
 
 import java.util.List;
 
@@ -39,7 +39,7 @@ class OrderConsumerTest {
         List<ProductOrder> productOrders = asList(new ProductOrder("1L",3),
                 new ProductOrder("2L",2));
 
-        CustomerOrder customerOrder = new CustomerOrder(id,new CustomerIdentifier(customerId),productOrders);
+        var customerOrder = new CustomerOrder(id,new CustomerIdentifier(customerId),productOrders);
         subject.accept(customerOrder);
 
         verify(customerOrderService).saveOrder(any());

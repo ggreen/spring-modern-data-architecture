@@ -7,7 +7,6 @@
 
 package com.vmware.retail.source.controller;
 
-import com.vmware.retail.domain.Product;
 import nyla.solutions.core.patterns.conversion.Converter;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import spring.modern.data.domains.customer.Product;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;

@@ -7,24 +7,13 @@
 
 package com.vmware.retail.controller;
 
-import com.vmware.retail.domain.CustomerFavorites;
+import spring.modern.data.domains.customer.CustomerFavorites;
 import com.vmware.retail.repository.CustomerFavoriteRepository;
-import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.codec.ServerSentEvent;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
-import reactor.core.publisher.Flux;
-import reactor.core.scheduler.Scheduler;
-import reactor.core.scheduler.Schedulers;
 
-import java.time.Duration;
 import java.util.concurrent.ThreadFactory;
 
 /**

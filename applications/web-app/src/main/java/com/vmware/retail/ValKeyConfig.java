@@ -7,7 +7,7 @@
 
 package com.vmware.retail;
 
-import com.vmware.retail.domain.Promotion;
+import spring.modern.data.domains.customer.Promotion;
 import spring.modern.data.repository.valkey.CustomerFavoriteValKeyRepository;
 import spring.modern.data.repository.valkey.ProductValKeyRepository;
 import spring.modern.data.repository.valkey.PromotionValKeyRepository;

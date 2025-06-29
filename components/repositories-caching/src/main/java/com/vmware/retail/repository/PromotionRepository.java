@@ -7,7 +7,7 @@
 
 package com.vmware.retail.repository;
 
-import com.vmware.retail.domain.Promotion;
+import spring.modern.data.domains.customer.Promotion;
 import org.springframework.data.keyvalue.repository.KeyValueRepository;
 
 /**

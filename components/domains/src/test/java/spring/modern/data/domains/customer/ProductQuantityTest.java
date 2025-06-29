@@ -5,7 +5,7 @@
  *
  */
 
-package com.vmware.retail.domain;
+package spring.modern.data.domains.customer;
 
 import org.junit.jupiter.api.Test;
 

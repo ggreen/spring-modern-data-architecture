@@ -7,8 +7,6 @@
 
 package com.vmware.retail.caching.consumers;
 
-import com.vmware.retail.domain.CustomerFavorites;
-import com.vmware.retail.domain.ProductQuantity;
 import com.vmware.retail.repository.CustomerFavoriteRepository;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +14,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import spring.modern.data.domains.customer.CustomerFavorites;
+import spring.modern.data.domains.customer.ProductQuantity;
+
 import java.util.TreeSet;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -39,7 +40,7 @@ class SaveFavoritesConsumerTest {
         var productQuantity = JavaBeanGeneratorCreator.of(ProductQuantity.class).create();
 
         productQuantities.add(productQuantity);
-        CustomerFavorites customIdentifier = new CustomerFavorites(id,productQuantities);
+        var customIdentifier = new CustomerFavorites(id,productQuantities);
 
         subject.accept(customIdentifier);
 

@@ -9,14 +9,14 @@ package com.vmware.retail.analytics.service.impl;
 
 import com.vmware.retail.analytics.repository.ProductRepository;
 import com.vmware.retail.analytics.service.CustomerAnalyticService;
-import com.vmware.retail.domain.Promotion;
-import com.vmware.retail.domain.customer.CustomerIdentifier;
-import com.vmware.retail.domain.order.CustomerOrder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import spring.modern.data.domains.customer.CustomerIdentifier;
+import spring.modern.data.domains.customer.Promotion;
+import spring.modern.data.domains.customer.order.CustomerOrder;
 
 @Service
 @Slf4j

@@ -7,7 +7,7 @@
 
 package com.vmware.retail.events;
 
-import com.vmware.retail.domain.Promotion;
+import spring.modern.data.domains.customer.Promotion;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
 import org.apache.geode.cache.EntryEvent;
 import org.junit.jupiter.api.BeforeEach;

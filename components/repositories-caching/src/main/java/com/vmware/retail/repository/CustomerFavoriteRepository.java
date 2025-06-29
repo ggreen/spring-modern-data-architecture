@@ -7,7 +7,7 @@
 
 package com.vmware.retail.repository;
 
-import com.vmware.retail.domain.CustomerFavorites;
+import spring.modern.data.domains.customer.CustomerFavorites;
 import org.springframework.data.keyvalue.repository.KeyValueRepository;
 import org.springframework.stereotype.Repository;
 

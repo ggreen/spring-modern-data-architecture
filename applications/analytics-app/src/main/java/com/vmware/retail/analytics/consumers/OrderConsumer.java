@@ -8,8 +8,8 @@
 package com.vmware.retail.analytics.consumers;
 
 import com.vmware.retail.analytics.service.CustomerOrderService;
-import com.vmware.retail.domain.order.CustomerOrder;
 import org.springframework.stereotype.Component;
+import spring.modern.data.domains.customer.order.CustomerOrder;
 
 import java.util.function.Consumer;
 

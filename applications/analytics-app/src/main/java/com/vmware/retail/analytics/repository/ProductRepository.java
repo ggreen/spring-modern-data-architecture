@@ -7,14 +7,15 @@
 
 package com.vmware.retail.analytics.repository;
 
-import com.vmware.retail.domain.CustomerFavorites;
-import com.vmware.retail.domain.Product;
-import com.vmware.retail.domain.order.ProductOrder;
+
+import spring.modern.data.domains.customer.CustomerFavorites;
+import spring.modern.data.domains.customer.Product;
+import spring.modern.data.domains.customer.order.ProductOrder;
 
 import java.util.List;
 
 public interface ProductRepository {
-    CustomerFavorites findCustomerFavoritesByCustomerIdAndTopCount(String customerId,int topCount);
+    CustomerFavorites findCustomerFavoritesByCustomerIdAndTopCount(String customerId, int topCount);
 
     List<Product> findFrequentlyBoughtTogether(List<ProductOrder> productOrders);
 

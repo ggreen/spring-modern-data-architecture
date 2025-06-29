@@ -7,10 +7,10 @@
 
 package com.vmware.retail.caching.consumers;
 
-import com.vmware.retail.domain.Promotion;
 import com.vmware.retail.repository.PromotionRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import spring.modern.data.domains.customer.Promotion;
 
 import java.util.function.Consumer;
 

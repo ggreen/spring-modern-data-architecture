@@ -7,7 +7,7 @@
 
 package com.vmware.retail.repository.gemfire;
 
-import com.vmware.retail.domain.CustomerFavorites;
+import spring.modern.data.domains.customer.CustomerFavorites;
 import com.vmware.retail.repository.CustomerFavoriteRepository;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.gemfire.repository.GemfireRepository;

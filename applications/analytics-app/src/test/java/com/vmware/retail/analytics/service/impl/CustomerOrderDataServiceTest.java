@@ -9,13 +9,13 @@ package com.vmware.retail.analytics.service.impl;
 
 import com.vmware.retail.analytics.repository.CustomerOrderRepository;
 import com.vmware.retail.analytics.service.CustomerAnalyticService;
-import com.vmware.retail.domain.order.CustomerOrder;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import spring.modern.data.domains.customer.order.CustomerOrder;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;

@@ -7,8 +7,8 @@
 
 package com.vmware.retail.listener;
 
-import com.vmware.retail.domain.Product;
-import com.vmware.retail.domain.Promotion;
+import spring.modern.data.domains.customer.Product;
+import spring.modern.data.domains.customer.Promotion;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;

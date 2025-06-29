@@ -8,12 +8,12 @@
 package com.vmware.retail.analytics.consumers;
 
 import com.vmware.retail.analytics.service.CustomerAnalyticService;
-import com.vmware.retail.domain.customer.CustomerIdentifier;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import spring.modern.data.domains.customer.CustomerIdentifier;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -32,9 +32,9 @@ class CalculateFavoritesConsumerTest {
 
     @Test
     void given_customer_when_accept_then_cacheFavorites() {
-        String customerId = "u01";
+        var customerId = "u01";
 
-        CustomerIdentifier customIdentifier = new CustomerIdentifier(customerId);
+        var customIdentifier = new CustomerIdentifier(customerId);
 
         subject.accept(customIdentifier);
 

@@ -7,7 +7,7 @@
 
 package com.vmware.retail.repository.gemfire;
 
-import com.vmware.retail.domain.Promotion;
+import spring.modern.data.domains.customer.Promotion;
 import com.vmware.retail.repository.PromotionRepository;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.gemfire.repository.GemfireRepository;

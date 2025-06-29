@@ -7,14 +7,14 @@
 
 package com.vmware.retail.source.functions;
 
-import com.vmware.retail.domain.customer.CustomerIdentifier;
-import com.vmware.retail.domain.order.CustomerOrder;
-import com.vmware.retail.domain.order.ProductOrder;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import nyla.solutions.core.exception.TooManyRowsException;
 import nyla.solutions.core.io.csv.CsvReader;
 import org.springframework.stereotype.Component;
+import spring.modern.data.domains.customer.CustomerIdentifier;
+import spring.modern.data.domains.customer.order.CustomerOrder;
+import spring.modern.data.domains.customer.order.ProductOrder;
 
 import java.io.StringReader;
 import java.util.ArrayList;

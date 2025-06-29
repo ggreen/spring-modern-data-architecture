@@ -7,9 +7,9 @@
 
 package com.vmware.retail.controller;
 
-import com.vmware.retail.domain.CustomerFavorites;
-import com.vmware.retail.domain.Product;
-import com.vmware.retail.domain.ProductQuantity;
+import spring.modern.data.domains.customer.CustomerFavorites;
+import spring.modern.data.domains.customer.Product;
+import spring.modern.data.domains.customer.ProductQuantity;
 import com.vmware.retail.repository.CustomerFavoriteRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

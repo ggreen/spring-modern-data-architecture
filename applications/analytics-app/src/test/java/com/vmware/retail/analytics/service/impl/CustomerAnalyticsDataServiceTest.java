@@ -1,13 +1,6 @@
 package com.vmware.retail.analytics.service.impl;
 
 import com.vmware.retail.analytics.repository.ProductRepository;
-import com.vmware.retail.domain.CustomerFavorites;
-import com.vmware.retail.domain.Product;
-import com.vmware.retail.domain.ProductQuantity;
-import com.vmware.retail.domain.Promotion;
-import com.vmware.retail.domain.customer.CustomerIdentifier;
-import com.vmware.retail.domain.order.CustomerOrder;
-import com.vmware.retail.domain.order.ProductOrder;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,6 +9,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import spring.modern.data.domains.customer.*;
+import spring.modern.data.domains.customer.order.CustomerOrder;
+import spring.modern.data.domains.customer.order.ProductOrder;
 
 import java.util.List;
 import java.util.SortedSet;
