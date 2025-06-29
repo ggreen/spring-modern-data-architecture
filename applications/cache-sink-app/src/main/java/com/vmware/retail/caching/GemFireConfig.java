@@ -7,9 +7,9 @@
 
 package com.vmware.retail.caching;
 
-import com.vmware.retail.repository.gemfire.CustomerFavoriteGemFireRepository;
-import com.vmware.retail.repository.gemfire.ProductGemFireRepository;
-import com.vmware.retail.repository.gemfire.PromotionGemFireRepository;
+import spring.modern.data.repository.gemfire.CustomerFavoriteGemFireRepository;
+import spring.modern.data.repository.gemfire.ProductGemFireRepository;
+import spring.modern.data.repository.gemfire.PromotionGemFireRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.geode.cache.DataPolicy;
 import org.apache.geode.cache.client.ClientCache;

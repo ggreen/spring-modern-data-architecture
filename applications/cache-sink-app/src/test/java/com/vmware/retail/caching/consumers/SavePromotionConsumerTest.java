@@ -7,7 +7,7 @@
 
 package com.vmware.retail.caching.consumers;
 
-import com.vmware.retail.repository.PromotionRepository;
+import spring.modern.data.repository.PromotionRepository;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

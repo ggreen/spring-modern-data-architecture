@@ -8,7 +8,7 @@
 package com.vmware.retail.controller;
 
 import spring.modern.data.domains.customer.Product;
-import com.vmware.retail.repository.ProductRepository;
+import spring.modern.data.repository.ProductRepository;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

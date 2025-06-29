@@ -7,7 +7,7 @@
 
 package com.vmware.retail.caching.consumers;
 
-import com.vmware.retail.repository.CustomerFavoriteRepository;
+import spring.modern.data.repository.CustomerFavoriteRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

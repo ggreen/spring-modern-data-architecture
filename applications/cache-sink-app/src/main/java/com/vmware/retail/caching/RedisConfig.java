@@ -7,7 +7,7 @@
 //
 //package com.vmware.retail.caching;
 //
-//import com.vmware.retail.repository.CustomerFavoriteRepository;
+//import spring.modern.data.repository.CustomerFavoriteRepository;
 //import nyla.solutions.core.util.Text;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Qualifier;

@@ -9,7 +9,7 @@ package com.vmware.retail.controller;
 
 import spring.modern.data.domains.customer.Product;
 import spring.modern.data.domains.customer.Promotion;
-import com.vmware.retail.repository.PromotionRepository;
+import spring.modern.data.repository.PromotionRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;

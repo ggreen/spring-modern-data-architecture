@@ -8,7 +8,7 @@
 package com.vmware.retail.controller;
 
 import spring.modern.data.domains.customer.Product;
-import com.vmware.retail.repository.ProductRepository;
+import spring.modern.data.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 

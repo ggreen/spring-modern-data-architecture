@@ -8,7 +8,7 @@
 package com.vmware.retail.controller;
 
 import spring.modern.data.domains.customer.CustomerFavorites;
-import com.vmware.retail.repository.CustomerFavoriteRepository;
+import spring.modern.data.repository.CustomerFavoriteRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;

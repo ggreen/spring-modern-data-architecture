@@ -5,7 +5,7 @@
  *
  */
 
-package com.vmware.retail.events;
+package spring.modern.data.events;
 
 import org.apache.geode.cache.EntryEvent;
 import org.apache.geode.cache.util.CacheListenerAdapter;

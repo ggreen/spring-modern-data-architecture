@@ -1,7 +1,7 @@
 package spring.modern.data.repository.valkey;
 
 import spring.modern.data.domains.customer.Product;
-import com.vmware.retail.repository.ProductRepository;
+import spring.modern.data.repository.ProductRepository;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.keyvalue.repository.KeyValueRepository;
 import org.springframework.stereotype.Repository;
