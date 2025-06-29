@@ -8,19 +8,27 @@
 		<version>3.5.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.vmware</groupId>
-	<artifactId>retail-repositories-valkey</artifactId>
+	<groupId>spring.modern.data.architecture</groupId>
+	<artifactId>repositories-gemfire</artifactId>
 	<version>0.0.2-SNAPSHOT</version>
-	<name>retail-repositories-valkey</name>
-	<description>retail-repositories-valkey</description>
+	<name>repositories-gemfire</name>
+	<description>repositories-gemfire</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2025.0.0</spring-cloud.version>
+		<springBootForGemFire.version>2.0.0</springBootForGemFire.version>
+		<vmwareGemFire.version>10.0.0</vmwareGemFire.version>
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
+			<groupId>com.vmware.gemfire</groupId>
+			<artifactId>spring-boot-3.5-gemfire-10.1</artifactId>
+			<version>${springBootForGemFire.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vmware.gemfire</groupId>
+			<artifactId>gemfire-core</artifactId>
+			<version>${vmwareGemFire.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -28,8 +36,8 @@
 			<scope>test</scope>
 		</dependency>
         <dependency>
-            <groupId>com.vmware</groupId>
-            <artifactId>retail-domain</artifactId>
+            <groupId>spring.modern.data.architecture</groupId>
+            <artifactId>domains</artifactId>
             <version>0.0.2-SNAPSHOT</version>
         </dependency>
 		<dependency>
@@ -37,8 +45,8 @@
 			<artifactId>spring-data-keyvalue</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.vmware</groupId>
-			<artifactId>retail-repositories-caching</artifactId>
+			<groupId>spring.modern.data.architecture</groupId>
+			<artifactId>repositories-caching</artifactId>
 			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
@@ -53,4 +61,13 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<repositories>
+		<repository>
+			<id>gemfire-repository-broadcom</id>
+			<name>GemFire Release Repository</name>
+			<url>https://packages.broadcom.com/artifactory/gemfire/</url>
+		</repository>
+	</repositories>
+
+
 </project>

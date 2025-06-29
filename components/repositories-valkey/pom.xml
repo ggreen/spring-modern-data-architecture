@@ -8,11 +8,11 @@
 		<version>3.5.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.vmware</groupId>
-	<artifactId>retail-repositories-caching</artifactId>
+	<groupId>spring.modern.data.architecture</groupId>
+	<artifactId>repositories-valkey</artifactId>
 	<version>0.0.2-SNAPSHOT</version>
-	<name>retail-repositories-caching</name>
-	<description>retail-repositories-caching</description>
+	<name>repositories-valkey</name>
+	<description>repositories-valkey</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2025.0.0</spring-cloud.version>
@@ -20,17 +20,26 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
         <dependency>
-            <groupId>com.vmware</groupId>
-            <artifactId>retail-domain</artifactId>
+            <groupId>spring.modern.data.architecture</groupId>
+            <artifactId>domains</artifactId>
             <version>0.0.2-SNAPSHOT</version>
         </dependency>
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-keyvalue</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>spring.modern.data.architecture</groupId>
+			<artifactId>repositories-caching</artifactId>
+			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>

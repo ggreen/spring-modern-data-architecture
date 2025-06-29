@@ -8,11 +8,11 @@
 		<version>3.5.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.vmware</groupId>
-	<artifactId>retail-web-app</artifactId>
+	<groupId>spring.modern.data.architecture</groupId>
+	<artifactId>web-app</artifactId>
 	<version>0.2.0-SNAPSHOT</version>
-	<name>retail-web-app</name>
-	<description>retail-web-app</description>
+	<name>web-app</name>
+	<description>web-app</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2025.0.0</spring-cloud.version>
@@ -106,13 +106,13 @@
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
         <dependency>
-            <groupId>com.vmware</groupId>
-            <artifactId>retail-domain</artifactId>
+            <groupId>spring.modern.data.architecture</groupId>
+            <artifactId>domains</artifactId>
             <version>0.0.2-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.vmware</groupId>
-            <artifactId>retail-repositories-caching</artifactId>
+            <groupId>spring.modern.data.architecture</groupId>
+            <artifactId>repositories-caching</artifactId>
             <version>0.0.2-SNAPSHOT</version>
         </dependency>
 		<dependency>
@@ -121,18 +121,18 @@
 			<scope>test</scope>
 		</dependency>
         <dependency>
-            <groupId>com.vmware</groupId>
-            <artifactId>retail-repositories-gemfire</artifactId>
+            <groupId>spring.modern.data.architecture</groupId>
+            <artifactId>repositories-gemfire</artifactId>
             <version>0.0.2-SNAPSHOT</version>
         </dependency>
 		<dependency>
-			<groupId>com.vmware</groupId>
-			<artifactId>retail-repositories-valkey</artifactId>
+			<groupId>spring.modern.data.architecture</groupId>
+			<artifactId>repositories-valkey</artifactId>
 			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
         <dependency>
-            <groupId>com.vmware</groupId>
-            <artifactId>retail-events-gemfire</artifactId>
+            <groupId>spring.modern.data.architecture</groupId>
+            <artifactId>events-gemfire</artifactId>
             <version>0.0.2-SNAPSHOT</version>
         </dependency>
     </dependencies>

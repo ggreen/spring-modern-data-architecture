@@ -8,11 +8,11 @@
 		<version>3.5.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.vmware</groupId>
-	<artifactId>retail-repositories-gemfire</artifactId>
+	<groupId>spring.modern.data.architecture</groupId>
+	<artifactId>events-gemfire</artifactId>
 	<version>0.0.2-SNAPSHOT</version>
-	<name>retail-repositories-gemfire</name>
-	<description>retail-repositories-gemfire</description>
+	<name>events-gemfire</name>
+	<description>events-gemfire</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2025.0.0</spring-cloud.version>
@@ -36,8 +36,8 @@
 			<scope>test</scope>
 		</dependency>
         <dependency>
-            <groupId>com.vmware</groupId>
-            <artifactId>retail-domain</artifactId>
+            <groupId>spring.modern.data.architecture</groupId>
+            <artifactId>domains</artifactId>
             <version>0.0.2-SNAPSHOT</version>
         </dependency>
 		<dependency>
@@ -45,8 +45,8 @@
 			<artifactId>spring-data-keyvalue</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.vmware</groupId>
-			<artifactId>retail-repositories-caching</artifactId>
+			<groupId>spring.modern.data.architecture</groupId>
+			<artifactId>repositories-caching</artifactId>
 			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
@@ -61,6 +61,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
 	<repositories>
 		<repository>
 			<id>gemfire-repository-broadcom</id>
@@ -68,6 +69,5 @@
 			<url>https://packages.broadcom.com/artifactory/gemfire/</url>
 		</repository>
 	</repositories>
-
 
 </project>

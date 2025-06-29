@@ -8,11 +8,11 @@
 		<version>3.5.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.vmware</groupId>
-	<artifactId>retail-analytics-app </artifactId>
+	<groupId>spring.modern.data.architecture</groupId>
+	<artifactId>analytics-app </artifactId>
 	<version>0.2.0-SNAPSHOT</version>
-	<name>retail-analytics-app</name>
-	<description>retail-analytics-app</description>
+	<name>analytics-app</name>
+	<description>analytics-app</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2025.0.0</spring-cloud.version>
@@ -64,8 +64,8 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>com.vmware</groupId>
-			<artifactId>retail-domain</artifactId>
+			<groupId>spring.modern.data.architecture</groupId>
+			<artifactId>domains</artifactId>
 			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>

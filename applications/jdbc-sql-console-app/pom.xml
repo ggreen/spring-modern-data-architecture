@@ -8,7 +8,7 @@
 		<version>3.5.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.vmware</groupId>
+	<groupId>spring.modern.data.architecture</groupId>
 	<artifactId>jdbc-sql-console-app</artifactId>
 	<version>0.0.4-SNAPSHOT</version>
 	<name>jdbc-sql-console-app</name>
