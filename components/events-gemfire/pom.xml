@@ -22,7 +22,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.vmware.gemfire</groupId>
-			<artifactId>spring-boot-3.5-gemfire-10.1</artifactId>
+			<artifactId>spring-data-3.5-gemfire-10.1</artifactId>
 			<version>${springBootForGemFire.version}</version>
 		</dependency>
 		<dependency>
