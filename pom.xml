@@ -4,25 +4,23 @@
                              http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.vmware</groupId>
-    <artifactId>spring-modern-data-architecture-parent</artifactId>
+    <groupId>spring.modern.data.architecture</groupId>
+    <artifactId>spring-modern-data-architecture</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0</version>
     <name>spring-modern-data-architecture-parent</name>
     <modules>
-        <module>components/retail-domain</module>
-        <module>components/retail-repositories-caching</module>
-        <module>components/retail-repositories-gemfire</module>
-        <module>components/retail-events-gemfire</module>
-        <module>applications/retail-web-app</module>
-        <module>applications/retail-analytics-app</module>
-        <module>applications/retail-source-app</module>
-        <module>applications/retail-cache-sink-app</module>
+        <module>components/domains</module>
+        <module>components/repositories-caching</module>
+        <module>components/repositories-gemfire</module>
+        <module>components/events-gemfire</module>
+        <module>applications/web-app</module>
+        <module>applications/analytics-app</module>
+        <module>applications/source-app</module>
+        <module>applications/cache-sink-app</module>
         <module>applications/jdbc-sql-console-app</module>
         <module>applications/valkey-console-app</module>
-        <module>components/retail-repositories-valkey</module>
-<!--        <module>applications/spring-gf-locator</module>-->
-<!--        <module>applications/spring-gf-redis-server</module>-->
+        <module>components/repositories-valkey</module>
     </modules>
     <build>
         <pluginManagement>

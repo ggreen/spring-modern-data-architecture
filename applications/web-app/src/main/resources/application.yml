@@ -1,0 +1,43 @@
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  writer-with-default-pretty-printer: true
+  api-docs:
+    enabled: true
+    version: "openapi_3_0"
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: web-app
+  config:
+    import: "optional:configserver:"
+  redis:
+    cluster:
+#      Comma-delimited list of host:port pairs.
+#      nodes: localhost:6379,localhost:6372
+      nodes: localhost:6379
+#   Number of allowed cluster redirections.
+      max-redirects: 1
+#  redis:
+#    redis-sentinel://[password@]host[:port][,host2[:port2]][/databaseNumber]#sentinelMasterId for using Redis Sentinel
+#    url: redis-sentinel://localhost:6379
+#    url: redis://localhost:6379
+#    port: 6379
+#    lettuce:
+#      pool:
+#        min-idle: 1
+#        enabled: true
+#    client-name: ${spring.application.name}
+
+retail:
+  favorites:
+    refresh:
+      rateSeconds: 5
+    top:
+      count: 3
+  promotion:
+    destination: "/secured/user/queue/specific-user"
+    listener:
+      pattern:
+        topic: "*"
