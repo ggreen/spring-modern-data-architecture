@@ -23,7 +23,7 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 class SplitCsvByCustomerOrderTest {
 
-    private String exchange ="customerId";
+    private String exchange ="id";
     private int customerIdCol = 1;
     private int orderIdCol = 0;
     private SplitCsvByCustomerOrder subject;

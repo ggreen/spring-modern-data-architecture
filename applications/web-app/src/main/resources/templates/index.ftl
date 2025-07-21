@@ -77,7 +77,7 @@
                     for (let x in products) {
                         product = products[x];
 
-                        tableHTML +="<tr>"+"<td>"+product.id+"</td>"+"<td>"+product.name+"</td>"+"</tr>";
+                        tableHTML +="<tr id='productReview'>"+"<td>"+product.id+"</td>"+"<td>"+product.name+"</td>"+"</tr>";
                      }
                      tableHTML +="</table>";
 

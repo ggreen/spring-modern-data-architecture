@@ -68,7 +68,7 @@ class ProductJdbcRepositoryTest {
         assertEquals(expected, actual);
         verify(jdbcTemplate).query(anyString(),
                 any(RowCallbackHandler.class),
-                anyString(), //customerId
+                anyString(), //id
                 any()); //topCount
     }
 

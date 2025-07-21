@@ -20,7 +20,7 @@ public class IndexController {
     private final String customerId;
 
     public IndexController(
-            @Value("${retail.customer.attribute.name:customerId}")
+            @Value("${retail.customer.attribute.name:id}")
             String customerIdAttribId,
             @Value("${retail.customer.id}")
             String customerId) {

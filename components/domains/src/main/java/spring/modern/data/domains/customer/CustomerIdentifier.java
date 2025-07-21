@@ -9,7 +9,7 @@ package spring.modern.data.domains.customer;
 
 /**
  Example JSON
- { "customerId" : "g01" }
+ { "id" : "g01" }
 
  * @param customerId
  */

@@ -65,7 +65,7 @@ public class CsvToCustomerOrder implements Function<String, CustomerOrder> {
 
           rowCustomerId = getByIndex(row,customerCol);
           if(customerId != null && !customerId.equals(rowCustomerId))
-              throw new TooManyRowsException("Cannot process multiple customerId(s) ("+customerId+","+rowCustomerId+")");
+              throw new TooManyRowsException("Cannot process multiple id(s) ("+customerId+","+rowCustomerId+")");
 
           customerId = rowCustomerId;
 

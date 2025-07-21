@@ -47,13 +47,13 @@ class CustomerAnalyticsDataServiceTest {
 
     private Product expectedProduct = new Product("id","name");
     private List<Product> expectedProducts = asList(expectedProduct);
-    private String expectedId = "customerId";
+    private String expectedId = "id";
     private Promotion expected = new Promotion(expectedId,null,expectedProducts);
 
     private Long orderId = 3L;
     private String productId = "pId";
     private int quantity = 3;
-    private String customerId = "customerId";
+    private String customerId = "id";
     private ProductOrder productOrder = new ProductOrder(productId,quantity);
     private CustomerIdentifier customerIdentifier = new CustomerIdentifier(customerId);
     private List<ProductOrder> productOrders = asList(productOrder);
