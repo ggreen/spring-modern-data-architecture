@@ -37,7 +37,7 @@ Demo/Records/Webinars
 
 ![web-app-img.png](docs/diagrams/web-app-img.png)
 
-- Spring Boot Web App real-time access from GemFire
+- Spring Boot Web App real-time access from ValKey or GemFire
 - Spring Boot App sink application to populate data from RabbitMQ
 - Spring App for data analytics using (Postgres, MySQL or Greenplum) and RabbitMQ to pushes data to GemFire
 Spring Boot App source to provide API integration interfaces to send to RabbitMQ

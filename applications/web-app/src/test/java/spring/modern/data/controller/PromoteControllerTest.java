@@ -7,6 +7,8 @@
 
 package spring.modern.data.controller;
 
+import nyla.solutions.core.patterns.integration.Publisher;
+import org.junit.jupiter.api.BeforeEach;
 import spring.modern.data.domains.customer.Product;
 import spring.modern.data.domains.customer.Promotion;
 import spring.modern.data.repository.PromotionRepository;
@@ -28,19 +30,35 @@ class PromoteControllerTest
 {
     @Mock
     private PromotionRepository repository;
-    private Promotion expected = new Promotion("1",
+    private final Promotion promotion = new Promotion("1",
             "new stuff",
             toList(new Product("3L","productName")));
+
+    @Mock
+    private Publisher<Promotion> publisher;
+    private PromoteController subject;
+
+    @BeforeEach
+    void setUp() {
+        subject = new PromoteController(repository,publisher);
+    }
 
     @Test
     void given_promote_When_savePromotion_Then_getPromote_returns_Saved()
     {
-        when(repository.findById(anyString())).thenReturn(Optional.of(expected));
-        System.out.println(expected);
-        var subject = new PromoteController(repository);
+        when(repository.findById(anyString())).thenReturn(Optional.of(promotion));
+        System.out.println(promotion);
 
-        subject.savePromotion(expected);
-        assertEquals(expected,subject.getPromotion(expected.id()));
+        subject.savePromotion(promotion);
+        assertEquals(promotion,subject.getPromotion(promotion.id()));
         verify(repository).findById(anyString());
+    }
+
+    @Test
+    void publishPromotion() {
+
+        subject.publishPromotion(promotion);
+
+        verify(publisher).send(promotion);
     }
 }
