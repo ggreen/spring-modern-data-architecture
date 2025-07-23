@@ -14,7 +14,7 @@
         stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
 
-        var userName = "nyla";
+        var userName = "${id}";
 
         stompClient.subscribe('/topic/customerPromotions/'+userName, function (promotionResponse) {
 
@@ -95,7 +95,7 @@
     <body>
 
     <h1>Retail Application Demo</h1>
-     <h4>Hello,</h4>
+     <h4>Hello ${id},</h4>
         <ul>
             <li><a href="/swagger-ui.html">Swagger-UI</a></li>
         </ul>
