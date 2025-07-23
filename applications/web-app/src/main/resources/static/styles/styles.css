@@ -10,6 +10,35 @@ body {
     margin: 0;
 }
 
+  .negative-box {
+      display: inline-block;
+      background-color: #ffdddd;
+      color: #a10000;
+      border: 2px solid #ff4d4d;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .positive-box {
+      display: inline-block;
+      padding: 12px 20px;
+      background-color: #d4edda; /* light green background */
+      color: #155724;            /* dark green text */
+      border: 2px solid #c3e6cb; /* green border */
+      border-radius: 8px;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+      box-shadow: 0 2px 5px rgba(0, 128, 0, 0.2);
+      font-size: 18px;
+      text-align: center;
+    }
+
+
 .dataTable {
       font-family: Arial, Helvetica, sans-serif;
       border-collapse: collapse;
@@ -84,7 +113,7 @@ li a:hover {
 }
 
 .dataRows tr:nth-child(even){background-color: #f2f2f2;}
-.dataRows tr:nth-child(odd){color: #f2f2f2;}
+.dataRows tr:nth-child(odd){color: #000000;}
 
 .dataRows tr:hover {background-color: #ddd;}
 

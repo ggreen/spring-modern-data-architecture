@@ -22,6 +22,7 @@ import spring.modern.data.repository.ProductRepository;
 import spring.modern.data.repository.valkey.ProductReviewRepository;
 import spring.modern.data.service.QueryProductService;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
@@ -64,6 +65,25 @@ class ProductControllerTest
         subject = new ProductController(repository,queryProductService,productReviewRepository);
 
         productReview = ProductReview.builder().id(product.id()).customerReviews(new TreeSet<>(Set.of(customerReview))).build();
+    }
+
+
+    @Test
+    void getProductReviewSummariesByNameContaining() {
+
+        ProductReviewSummary productReviewSummary = ProductReviewSummary.builder()
+                .id(product.id())
+                .productReview(productReview).product(product).build();
+        List<ProductReviewSummary> expected = List.of(productReviewSummary);
+
+
+        when(queryProductService.findByNameContaining(anyString())).thenReturn(List.of(product));
+        when(productReviewRepository.findById(anyString())).thenReturn(Optional.of(productReview));
+
+        var actual = subject.getProductReviewsByNameContaining(productReviewSummary.product().name());
+
+        assertThat(actual).isEqualTo(expected);
+
     }
 
     @Test

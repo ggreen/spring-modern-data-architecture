@@ -18,6 +18,7 @@ import spring.modern.data.repository.valkey.ProductReviewRepository;
 import spring.modern.data.service.QueryProductService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * ProductController for product information REST access
@@ -83,6 +84,24 @@ public class ProductController
                 .productReview(productReview)
                 .product(getProductById(id))
                 .build();
+
+    }
+
+    @GetMapping("customer/reviews/name/{name}")
+    public List<ProductReviewSummary> getProductReviewsByNameContaining(@PathVariable String name) {
+        var products = getProductsByNameContaining(name);
+
+
+        if(products == null)
+            return null;
+
+        return products.stream().map( p-> {
+            var review = productReviewRepository.findById(p.id())
+                    .orElse(null);
+            return ProductReviewSummary.builder().id(p.id())
+                    .product(p).productReview(review).build();
+
+        }).toList();
 
     }
 }
