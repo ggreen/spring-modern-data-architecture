@@ -19,7 +19,7 @@ import spring.modern.data.domains.customer.reviews.ProductReview;
 import spring.modern.data.domains.customer.reviews.ProductReviewSummary;
 import spring.modern.data.domains.customer.reviews.Sentiment;
 import spring.modern.data.repository.ProductRepository;
-import spring.modern.data.repository.valkey.ProductReviewRepository;
+import spring.modern.data.repository.ProductReviewRepository;
 import spring.modern.data.service.QueryProductService;
 
 import java.util.List;

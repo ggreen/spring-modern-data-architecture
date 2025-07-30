@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
-@ConfigurationProperties(prefix = "spring.redis.cluster")
-@Profile("redis")
+//@Component
+//@ConfigurationProperties(prefix = "spring.redis.cluster")
+//@Profile("valkey")
 public class RedisClusterConfigurationProperties {
     /*
      * spring.redis.cluster.nodes[0] = 127.0.0.1:7379

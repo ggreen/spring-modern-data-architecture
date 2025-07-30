@@ -1,3 +1,10 @@
+# Getting Started
+
+
+```shell
+--spring.profiles.active=valkey
+```
+
 
 ## RabbitMQ Testing
 

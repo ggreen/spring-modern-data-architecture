@@ -1,4 +1,4 @@
-package spring.modern.data.repository.valkey;
+package spring.modern.data.repository;
 
 import org.springframework.data.keyvalue.repository.KeyValueRepository;
 import org.springframework.stereotype.Repository;

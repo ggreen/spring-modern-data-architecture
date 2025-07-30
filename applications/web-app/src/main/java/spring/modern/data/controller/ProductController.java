@@ -8,17 +8,16 @@
 package spring.modern.data.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 import spring.modern.data.domains.customer.Product;
 import spring.modern.data.domains.customer.reviews.ProductReview;
 import spring.modern.data.domains.customer.reviews.ProductReviewSummary;
 import spring.modern.data.repository.ProductRepository;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
-import spring.modern.data.repository.valkey.ProductReviewRepository;
+import spring.modern.data.repository.ProductReviewRepository;
 import spring.modern.data.service.QueryProductService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * ProductController for product information REST access

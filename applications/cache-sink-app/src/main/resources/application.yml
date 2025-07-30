@@ -12,11 +12,16 @@ spring:
   cloud:
 #    function.definition: saveFavoritesConsumer;orderConsumer
     function:
-      definition: saveFavoritesConsumer;savePromotionConsumer;saveProductsConsumer
+      definition: saveFavoritesConsumer;savePromotionConsumer;saveProductsConsumer;saveProductReviewConsumer
     stream:
       default:
         contentType: "application/json"
       bindings:
+        saveProductReviewConsumer-in-0:
+          destination: retail.product.review.customer.output
+          group: ${spring.application.name}
+          consumer:
+            concurrency: 1
         saveFavoritesConsumer-in-0:
           destination: retail.customer.favorites
           group: ${spring.application.name}
