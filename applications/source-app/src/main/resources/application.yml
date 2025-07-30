@@ -1,0 +1,62 @@
+server:
+  port: 8190
+spring:
+  application:
+    name: source-app
+  config:
+    import: "optional:configserver:http://localhost:8888/"
+  cloud:
+    #    function.definition: csvToCustomerOrder;splitCsvByCustomerOrder
+    function:
+      definition: csvToCustomerOrder;splitCsvByCustomerOrder
+    stream:
+      default:
+        contentType: "application/json"
+#      function:
+#        bindings:
+#          csvToCustomerOrder-out-0: output
+      bindings:
+        csvToCustomerOrder-in-0:
+          destination: csv.customer.order
+          group: ${spring.application.name}
+          consumer:
+            concurrency: 1
+        splitCsvByCustomerOrder-in-0:
+          destination: csv.customer.orders
+          group: ${spring.application.name}
+          consumer:
+            concurrency: 1
+      rabbit:
+        default:
+          group: myQueue
+          requiredGroups: true
+          dlqQuorum:
+            enabled:  true
+          quorum:
+            enabled: true
+        bindings:
+          splitCsvByCustomerOrder-in-0:
+            consumer:
+              autoBindDlq: true
+              quorum.enabled: true
+              dlqQuorum:
+                enabled: true
+              prefetch: 10000
+          csvToCustomerOrder-in-0:
+            consumer:
+              autoBindDlq: true
+              quorum.enabled: true
+              dlqQuorum:
+                enabled: true
+              prefetch: 10000
+          csvToCustomerOrder-out-0:
+            destination: customer.orders
+source:
+  splitCsv:
+    consumer:
+      customerIdCol: 1
+      orderIdCol: 0
+retail:
+  favorites:
+    top:
+      count: 3

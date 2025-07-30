@@ -16,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import spring.modern.data.domains.customer.Product;
+import spring.modern.data.domains.customer.reviews.CustomerReview;
 
 import java.util.List;
 
@@ -65,4 +66,6 @@ class ProductControllerTest {
 
         verify(template).convertAndSend(anyString(),anyString(),any(Object.class));
     }
+
+
 }
