@@ -56,7 +56,8 @@ class ProductControllerTest
     private final String review = """
             I LOVE SPRING!!!
             """;
-    private final CustomerReview customerReview = new CustomerReview(custId,review, Sentiment.NEGATIVE);
+    private final String productId = "jelly";
+    private final CustomerReview customerReview = new CustomerReview(custId,productId, review, Sentiment.NEGATIVE);
     private ProductReview productReview;
     private ProductController subject;
 

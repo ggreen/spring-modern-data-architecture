@@ -1,0 +1,10 @@
+{
+  "id" : "jelly",
+  "customerReviews": [
+    {
+      "id" : "nyla",
+      "productId" : "jelly",
+      "review" : "I Love Jelly"
+    }
+  ]
+}

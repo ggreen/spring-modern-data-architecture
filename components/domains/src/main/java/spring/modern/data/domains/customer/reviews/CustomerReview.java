@@ -1,12 +1,15 @@
 package spring.modern.data.domains.customer.reviews;
 
+import lombok.Builder;
+
 /**
  * Customer review data
  * @param id customer Id
  * @param review the review
  * @param sentiment the review sentiment
  */
-public record CustomerReview(String id, String review, Sentiment sentiment) implements Comparable<CustomerReview> {
+@Builder
+public record CustomerReview(String id, String productId, String review, Sentiment sentiment) implements Comparable<CustomerReview> {
 
     @Override
     public int compareTo(CustomerReview o) {

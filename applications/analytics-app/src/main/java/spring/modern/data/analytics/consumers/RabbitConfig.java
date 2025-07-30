@@ -52,6 +52,9 @@ public class RabbitConfig {
     @Value("${retail.customer.promotions.exchange:retail.customer.promotions}")
     private String promotionExchangeName;
 
+    @Value("${spring.cloud.stream.bindings.saveProductReviewConsumer-out-0.destination}")
+    private String productViewCustomerExchangeName;
+
     @Bean
     public Exchange customerFavoritesExchange()
     {
@@ -64,6 +67,14 @@ public class RabbitConfig {
         return new TopicExchange(promotionExchangeName);
     }
 
+    //retail.product.review.customer.output
+    @Bean
+    public Exchange productViewCustomer()
+    {
+        return new TopicExchange(productViewCustomerExchangeName);
+    }
+
+
     @Bean
     ConnectionNameStrategy connectionNameStrategy(){
         return (connectionFactory) -> applicationName;
@@ -75,27 +86,6 @@ public class RabbitConfig {
         return new Jackson2JsonMessageConverter();
     }
 
-//    @Profile("!rabbit-product-quorum")
-//    @Bean
-//    Environment rabbitStreamEnvironment(org.springframework.core.env.Environment springEnv) {
-//
-//
-//        log.info("******* ENV: {}",System.getenv());
-//        log.info("******** PROPERTIES: {}",System.getProperties());
-//
-//        var env = Environment.builder()
-//                .host(hostname)
-//                .username(username)
-//                .password(password)
-//                .clientProperty("id",applicationName)
-//                .build();
-//
-////        var streamCreator = env.streamCreator();
-////        streamCreator.stream(productStreamName).create();
-//
-//        return env;
-//
-//    }
 
     @Bean
     @Profile("!rabbit-product-quorum")
@@ -121,20 +111,5 @@ public class RabbitConfig {
         return factory;
     }
 
-//    @Bean
-//    @ConditionalOnProperty(name = "rabbitmq.streaming.replay",havingValue = "true")
-//    ListenerContainerCustomizer<MessageListenerContainer> customizer() {
-//        return ( MessageListenerContainer cont, String dest, String group) ->
-//        {
-//            if(!(cont instanceof  StreamListenerContainer))
-//                return;
-//
-//            final var container = StreamListenerContainer.class.cast(cont);
-//
-//            log.info("Replaying, setting offset to first the record for streams");
-//            container.setConsumerCustomizer( (name, builder) -> {
-//                builder.offset(OffsetSpecification.first());
-//            });
-//        };
-//    }
+
 }
