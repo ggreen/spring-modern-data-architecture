@@ -41,6 +41,14 @@ retail:
                 ON CONFLICT (id)
                 DO
                    UPDATE SET data = to_json(:data::json)"
+    review:
+      findById:
+          sql: "select DATA from retail.product_reviews where id = :id"
+      save:
+        sql: "     INSERT INTO retail.product_reviews (id, DATA)
+            VALUES (:id, to_json(:productReviewJson::json))
+            ON CONFLICT (id)
+            DO UPDATE SET DATA = to_json(:productReviewJson::json);"
 spring:
   sql:
       init:

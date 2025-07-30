@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import spring.modern.data.domains.customer.reviews.CustomerReview;
 import spring.modern.data.domains.customer.reviews.ProductReview;
 import spring.modern.data.domains.customer.reviews.Sentiment;
 
 import java.util.List;
+import java.util.Map;
 import java.util.TreeSet;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -32,7 +32,7 @@ class ProductReviewJdbcRepositoryTest {
     private final static String productId= "sku1";
     private final Sentiment sentiment = Sentiment.POSITIVE;
     @Mock
-    private JdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate jdbcTemplate;
 
     @BeforeEach
     void setUp() {
@@ -41,12 +41,15 @@ class ProductReviewJdbcRepositoryTest {
                 new TreeSet<CustomerReview>(List.of(customerReview)))
                 .id(id).build();
 
-        subject = new ProductReviewJdbcRepository(jdbcTemplate);
+        subject = new ProductReviewJdbcRepository(jdbcTemplate,"findProductReviewByIdSql",
+                "updateProductReviewSQL");
     }
 
     @Test
     void findById() {
-        when(jdbcTemplate.queryForObject(anyString(),any(RowMapper.class),anyString())).thenReturn(productReview);
+        List<ProductReview> expected =  List.of(productReview);
+
+        when(jdbcTemplate.query(anyString(),any(Map.class),any(RowMapper.class))).thenReturn(expected);
 
         var actual = subject.findById(id).orElse(null);
 
@@ -58,6 +61,6 @@ class ProductReviewJdbcRepositoryTest {
 
         subject.save(productReview);
 
-        verify(jdbcTemplate).update(anyString(),any(PreparedStatementSetter.class));
+        verify(jdbcTemplate).update(anyString(),any(Map.class));
     }
 }
