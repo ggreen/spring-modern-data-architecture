@@ -1,12 +1,12 @@
 package spring.modern.data.source.controller;
 
 import nyla.solutions.core.patterns.conversion.Converter;
+import nyla.solutions.core.patterns.integration.Publisher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.amqp.core.AmqpTemplate;
 import spring.modern.data.domains.customer.reviews.CustomerReview;
 
 import java.util.List;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.verify;
 class CustomerReviewControllerTest {
 
     @Mock
-    private AmqpTemplate template;
+    private Publisher<CustomerReview> customerReviewPublisher;
     @Mock
     private Converter<String,List<CustomerReview>> converter;
 
@@ -37,15 +37,14 @@ class CustomerReviewControllerTest {
         customerReview1 = CustomerReview.builder().id("1").build();
         customerReview2 = CustomerReview.builder().id("2").build();
         customerReviews = List.of(customerReview1,customerReview2);
-        subject = new CustomerReviewController(template,converter,"destination");
+        subject = new CustomerReviewController(customerReviewPublisher,converter);
     }
 
     @Test
     void loadCustomerReviews() {
 
         subject.loadCustomerReviews(customerReviews);
-
-        verify(template,times(customerReviews.size())).convertAndSend(anyString(),anyString(),any(CustomerReview.class));
+        verify(customerReviewPublisher,times(customerReviews.size())).send(any());
 
     }
 

@@ -1,8 +1,7 @@
 package spring.modern.data.source.controller;
 
 import nyla.solutions.core.patterns.conversion.Converter;
-import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.beans.factory.annotation.Value;
+import nyla.solutions.core.patterns.integration.Publisher;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,22 +11,19 @@ import spring.modern.data.domains.customer.reviews.CustomerReview;
 import java.util.List;
 
 /**
- * @param template  the AMPQ template
+ * @param customerReviewPublisher  the AMPQ publisher
  * @param converter converter from CSV to list
  */
 @RestController
 @RequestMapping("product/customer/reviews")
-public record CustomerReviewController(AmqpTemplate template,
-                                       Converter<String, List<CustomerReview>> converter,
-                                       @Value("${retail.product.customer.reviews.destination}")
-                                       String exchange) {
+public record CustomerReviewController(Publisher<CustomerReview> customerReviewPublisher,
+                                       Converter<String, List<CustomerReview>> converter
+                                       ) {
 
     @PostMapping
     public void loadCustomerReviews(@RequestBody List<CustomerReview> customerReviews) {
 
-        customerReviews.stream().forEach( customerReview -> {
-            template.convertAndSend(exchange,customerReview.id(),customerReview);
-        });
+        customerReviews.forEach(customerReviewPublisher::send);
     }
 
     @PostMapping("csv")
