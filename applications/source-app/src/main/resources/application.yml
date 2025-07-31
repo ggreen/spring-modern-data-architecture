@@ -60,3 +60,7 @@ retail:
   favorites:
     top:
       count: 3
+  product:
+    customer:
+      reviews:
+        destination: "retail.product.review.customer"

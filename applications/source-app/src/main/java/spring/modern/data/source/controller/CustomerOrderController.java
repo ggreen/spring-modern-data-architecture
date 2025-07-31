@@ -33,7 +33,7 @@ public class CustomerOrderController {
         }
         catch(NumberFormatException e)
         {
-            log.error("{}",e);
+            log.error("ERROR: {}",e);
             throw new InvalidOrderCsvException(e);
         }
     }

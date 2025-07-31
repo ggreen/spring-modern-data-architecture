@@ -1,5 +1,6 @@
 package spring.modern.data.source.controller;
 
+import nyla.solutions.core.patterns.conversion.Converter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,17 +21,23 @@ class CustomerReviewControllerTest {
 
     @Mock
     private AmqpTemplate template;
+    @Mock
+    private Converter<String,List<CustomerReview>> converter;
+
     private CustomerReview customerReview1;
     private CustomerReview customerReview2;
     private List<CustomerReview> customerReviews;
     private CustomerReviewController subject;
+    private final String csv = """
+      "id","productId","review","NEGATIVE"
+    """;
 
     @BeforeEach
     void setUp() {
         customerReview1 = CustomerReview.builder().id("1").build();
         customerReview2 = CustomerReview.builder().id("2").build();
         customerReviews = List.of(customerReview1,customerReview2);
-        subject = new CustomerReviewController(template,"destination");
+        subject = new CustomerReviewController(template,converter,"destination");
     }
 
     @Test
@@ -39,6 +46,15 @@ class CustomerReviewControllerTest {
         subject.loadCustomerReviews(customerReviews);
 
         verify(template,times(customerReviews.size())).convertAndSend(anyString(),anyString(),any(CustomerReview.class));
+
+    }
+
+    @Test
+    void loadCustomerReviewersCsv() {
+
+        subject.loadCustomerReviewsCsv(csv);
+
+        verify(converter).convert(anyString());
 
     }
 }
