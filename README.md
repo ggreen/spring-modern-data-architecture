@@ -46,13 +46,13 @@ Spring Boot App source to provide API integration interfaces to send to RabbitMQ
 
 # Project Overview
 
-| Path                                                          | Note                                                                                                                                                                                                      |
-|---------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [retail-web-app](applications/retail-web-app)                 | Customer portal web application to view product favorites and real-time promotions                                                                                                                        |
-| [retail-analytics-app](applications/retail-analytics-app)     | Calculates real-time customer favorites/promotions analytics and saves customer order/product into the database.                                                                                          |
-| [retail-cache-sink-app](applications/retail-cache-sink-app)   | Saves customer favorites and [performs pub/sub](https://redis.io/docs/interact/pubsub/) of promotions using [GemFire for Redis Apps](https://docs.vmware.com/en/VMware-GemFire-for-Redis-Apps/index.html) |
-| [retail-source-app](applications/retail-source-app)           | Exposes an HTTP API interface to receive product catalog in JSON and customer orders in CSV                                                                                                               |
-| [jdbc-sql-console-app](applications/jdbc-sql-console-app)     | Generic application to perform SQL query in a configured database                                                                                                                                         | 
+| Path                                         | Note                                                                                                                                                                                                      |
+|----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [retail-web-app](applications/web-app)       | Customer portal web application to view product favorites and real-time promotions                                                                                                                        |
+| [retail-analytics-app](applications/analytics-app) | Calculates real-time customer favorites/promotions analytics and saves customer order/product into the database.                                                                                          |
+| [retail-cache-sink-app](applications/cache-sink-app) | Saves customer favorites and [performs pub/sub](https://redis.io/docs/interact/pubsub/) of promotions using [GemFire for Redis Apps](https://docs.vmware.com/en/VMware-GemFire-for-Redis-Apps/index.html) |
+| [retail-source-app](applications/source-app) | Exposes an HTTP API interface to receive product catalog in JSON and customer orders in CSV                                                                                                               |
+| [jdbc-sql-console-app](applications/jdbc-sql-console-app) | Generic application to perform SQL query in a configured database                                                                                                                                         | 
 
 # Building Applications
 
