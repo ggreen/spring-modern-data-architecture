@@ -32,9 +32,8 @@ Pre-requisites
 
 Demo/Records/Webinars
 
-- [Retail supply chain volatility and improve resiliency through data visibility, intelligence and automation](https://www.brighttalk.com/webcast/14883/571251?utm_source=brighttalk-portal&utm_medium=web&utm_campaign=all-brighttalk&utm_content=recorded)
-- [Multi-Cloud Native Data with Spring and VMware Data Solutions](https://www.vmware.com/explore/video-library/video-landing.html?sessionid=1679079685784001CLge&videoId=6335593213112) (VMware Explore)
-- [Tanzu Application Service and VMware Data Solutions](https://www.vmware.com/explore/video-library/video-landing.html?sessionid=1683899525801001iaCG&videoId=6335272435112)  (VMware Explore)
+- [Retail supply chain volatility and improve resiliency through data visibility, intelligence and automation](https://www.youtube.com/watch?v=_vXACWnG7hM)
+- [Multi-Cloud Native Data with Spring and VMware Data Solutions](https://www.youtube.com/watch?v=ULlssvQa9to) (VMware Explore)
 
 # Spring Modern Data Architecture Project - Outcomes
 
