@@ -19,13 +19,16 @@ Pre-requisites
 - Java 17 or higher and Java development experience
 - Container/Kubernetes skills
 
-### GemFire for Redis Applications - Build Dependency
+### GemFire - Build Dependency
 
-Note: This repository uses [GemFire for Redis](https://docs.vmware.com/en/VMware-GemFire-for-Redis-Apps/1.1/gf-for-redis-apps/about.html).
-GemFire for Redis is free to use for local development.
+-Note: This repository uses Tanzu GemFire
+-GemFire for Redis is free to use for local development.
+-
+-In order to build, please follow the instruction [here]((https://docs.vmware.com/en/VMware-GemFire/10.0/gf/getting_started-installation-obtain_gemfire_maven.html)) to setup your credentials in your .m2/settings.xml file to access the
+-dependencies in the [GemFire maven repository](https://docs.vmware.com/en/VMware-GemFire/10.0/gf/getting_started-installation-obtain_gemfire_maven.html).
 
-In order to build Please following the instruction [here]((https://docs.vmware.com/en/VMware-GemFire/10.0/gf/getting_started-installation-obtain_gemfire_maven.html)) to setup your credentials in your .m2/settings.xml file to access the 
-dependencies in the [GemFire maven repository](https://docs.vmware.com/en/VMware-GemFire/10.0/gf/getting_started-installation-obtain_gemfire_maven.html).
+
+## Publications
 
 Demo/Records/Webinars
 
