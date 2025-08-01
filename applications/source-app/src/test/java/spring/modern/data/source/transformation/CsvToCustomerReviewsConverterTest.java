@@ -11,6 +11,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class CsvToCustomerReviewsConverterTest {
 
+    private final String csv = """
+            "${id}", "${productId}", "${review}", "${sentiment}"
+            """;
+
     private CsvToCustomerReviewsConverter subject;
 
     private final CustomerReview customerReview = CustomerReview.builder()
@@ -19,9 +23,6 @@ class CsvToCustomerReviewsConverterTest {
             .review("review")
             .sentiment(Sentiment.NEGATIVE)
             .build();
-    private final String csv = """
-            "${id}", "${productId}", "${review}", "${sentiment}"
-            """;
 
     private final String csv_no_sentiment = """
             "${id}", "${productId}", "${review}"
@@ -82,6 +83,16 @@ class CsvToCustomerReviewsConverterTest {
     void convert_not_enough_fields() {
         String invalid = """
                 "id","product"
+                """;
+        assertThat(subject.convert(invalid))
+                .isEmpty();
+    }
+
+    @Test
+    void convert_blank_rows() {
+        String invalid = """
+                
+                
                 """;
         assertThat(subject.convert(invalid))
                 .isEmpty();

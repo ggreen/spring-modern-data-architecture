@@ -1,3 +1,10 @@
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  writer-with-default-pretty-printer: true
+  api-docs:
+    enabled: true
+    version: "openapi_3_0"
 server:
   port: 8190
 spring:

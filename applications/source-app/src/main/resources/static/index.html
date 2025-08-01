@@ -1,9 +1,3 @@
-<!--
-  ~ /*
-  ~  * Copyright 2023 VMware, Inc.
-  ~  * SPDX-License-Identifier: GPL-3.0
-  ~  */
-  -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,6 +50,27 @@
             });
           });
           //----------------------------
+          // Customer Reviews
+          $("#customerReviewButton").click(function(){
+
+           var customerReviewsCsv = $('#customerReviewsCsv').val();
+            $.ajax({
+              url:"product/customer/reviews/csv",
+              type:"POST",
+              data:customerReviewsCsv,
+              contentType:"text/csv; charset=utf-8",
+              dataType:"text",
+              success: function(result,status,xhr){
+                $("#status").html(status);
+              },
+              error: function(xhr, ajaxOptions, thrownError) {
+                 alert(xhr.status);
+                    alert(thrownError);
+              }
+            });
+          });
+          //----------------------------
+          //Submit Customer Orders
           $("#orderButton").click(function(){
 
            var ordersCsv = $('#ordersCsv').val();
@@ -89,23 +104,34 @@
         <li><a href="/swagger-ui.html">Swagger-UI</a></li>
     </ul>
 
-    <button id="loadButton">Load Product</button>
     <div id="status"></div>
     <h2>Products</h2>
     <p>
-    <div>&quot;id&quot;,&quot;name&quot;</div>
-<textarea id="productsCsv" rows="5" cols="50">"sku1", "Peanut butter"
-"sku2", "Jelly"
-"sku3", "Bread"
-"sku4", "Milk"</textarea>
+        <div>&quot;id&quot;,&quot;name&quot;</div>
+    <textarea id="productsCsv" rows="5" cols="50">"sku1", "Peanut butter"
+        "sku2", "Jelly"
+        "sku3", "Bread"
+        "sku4", "Milk"</textarea>
     </p>
+    <button id="loadButton">Load Product</button>
+    <br/>
     <div>
-        <button id="orderButton">Submit Order</button>
+        <hr/>
         <h2>Orders</h2>
         <div>&quot;id&quot;,&quot;user&quot;,&quot;id&quot;,&quot;quantity&quot;</div>
 <textarea id="ordersCsv" rows="5" cols="50">"1","nyla","sku1","1"
 "1","nyla","sku2","1"</textarea>
-
     </div>
+    <button id="orderButton">Submit Order</button>
+
+    <hr/>
+    <h2>Customer Reviews</h2>
+    <p>
+        <div>"userId",&quot;sku&quot;,&quot;review&quot;</div>
+        <textarea id="customerReviewsCsv" rows="5" cols="50">"nyla","sku1","I Love Peanut Butter"
+            "nyla","sku2","I Love Jelly"
+        </textarea>
+    </p>
+    <button id="customerReviewButton">Submit Reviews</button>
     </body>
 </html>

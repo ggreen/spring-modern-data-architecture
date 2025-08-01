@@ -1,6 +1,7 @@
 package spring.modern.data.source.transformation;
 
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import nyla.solutions.core.io.csv.CsvReader;
 import nyla.solutions.core.patterns.conversion.Converter;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@ import java.util.List;
  * @author gregory green
  */
 @Component
+@Slf4j
 public class CsvToCustomerReviewsConverter
         implements Converter<String, List<CustomerReview>> {
 
@@ -39,7 +41,7 @@ public class CsvToCustomerReviewsConverter
 
         for(var rows : cvsReader)
         {
-            if(rows.size() < MIN_COLUMNS )
+            if(rows == null || rows.size() < MIN_COLUMNS )
                 continue;
 
             var builder = CustomerReview

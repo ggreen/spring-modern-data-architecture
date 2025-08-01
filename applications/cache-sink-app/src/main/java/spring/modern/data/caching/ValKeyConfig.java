@@ -18,7 +18,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
-import spring.modern.data.repository.CustomerFavoriteRepository;
 import spring.modern.data.repository.valkey.CustomerFavoriteValKeyRepository;
 
 import java.util.Calendar;
@@ -31,7 +30,7 @@ import java.util.Calendar;
 @Configuration
 @EnableRedisRepositories(basePackageClasses = CustomerFavoriteValKeyRepository.class)
 @Profile("valkey")
-public class RedisConfig
+public class ValKeyConfig
 {
     @Value("${spring.application.name}")
     private String applicationName;

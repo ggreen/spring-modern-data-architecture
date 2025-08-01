@@ -2,6 +2,7 @@
 
 package spring.modern.data.source;
 
+import lombok.extern.slf4j.Slf4j;
 import nyla.solutions.core.patterns.integration.Publisher;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.TopicExchange;
@@ -17,6 +18,7 @@ import spring.modern.data.domains.customer.reviews.CustomerReview;
 import java.util.List;
 
 @Configuration
+@Slf4j
 public class AmqpRabbitConfig {
 
     @Value("${spring.application.name}")
@@ -53,20 +55,25 @@ public class AmqpRabbitConfig {
     @Bean
     Publisher<List<Product>> productPublisher(AmqpTemplate amqpTemplate)
     {
-        return products -> amqpTemplate.convertAndSend(productExchange,productsRoutingKey,products);
+        return products -> {
+            log.info("Publishing to exchange:{} products:{}",productExchange,products);
+            amqpTemplate.convertAndSend(productExchange,productsRoutingKey,products);
+        };
     }
 
     @Bean
     Publisher<CustomerReview> customerReviewPublisher(AmqpTemplate amqpTemplate)
     {
-       return customerReview -> amqpTemplate.convertAndSend(customerReviewsExchange,customerReview.id(),customerReview);
+       return customerReview -> {
+           log.info("Publishing to exchange:{} reviews:{}",customerReviewsExchange,customerReview);
+           amqpTemplate.convertAndSend(customerReviewsExchange,customerReview.id(),customerReview);
+       };
     }
 
     @Bean
     ConnectionNameStrategy connectionNameStrategy(){
         return (connectionFactory) -> applicationName;
     }
-
 
     @Bean
     public MessageConverter converter()

@@ -1,5 +1,3 @@
-
-
 package spring.modern.data.caching;
 
 import lombok.extern.slf4j.Slf4j;
