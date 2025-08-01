@@ -1,9 +1,4 @@
-/*
- *
- *  * Copyright 2023 VMware, Inc.
- *  * SPDX-License-Identifier: GPL-3.0
- *
- */
+
 
 package spring.modern.data.controller;
 
@@ -20,7 +15,7 @@ public class IndexController {
     private final String customerId;
 
     public IndexController(
-            @Value("${retail.customer.attribute.name:customerId}")
+            @Value("${retail.customer.attribute.name:id}")
             String customerIdAttribId,
             @Value("${retail.customer.id}")
             String customerId) {

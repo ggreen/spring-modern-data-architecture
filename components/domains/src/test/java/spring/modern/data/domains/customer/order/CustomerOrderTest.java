@@ -1,9 +1,4 @@
-/*
- *
- *  * Copyright 2023 VMware, Inc.
- *  * SPDX-License-Identifier: GPL-3.0
- *
- */
+
 
 package spring.modern.data.domains.customer.order;
 
@@ -21,12 +16,12 @@ class CustomerOrderTest {
     void serialization() throws JsonProcessingException {
         /*""
                  { "id" : 1,
-                  "customerIdentifier": { "customerId" :  "nyla",
+                  "customerIdentifier": { "id" :  "nyla",
                           "productOrders" : \s
                               [
-                                {"productId" :  "sku1", "quantity" : 1},
-                                {"productId" :  "sku2", "quantity" : 1},
-                                {"productId" :  "sku3", "quantity" : 1}
+                                {"id" :  "sku1", "quantity" : 1},
+                                {"id" :  "sku2", "quantity" : 1},
+                                {"id" :  "sku3", "quantity" : 1}
                               ]
                           }
                    }

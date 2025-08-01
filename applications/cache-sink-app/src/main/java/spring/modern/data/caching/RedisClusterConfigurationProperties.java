@@ -1,10 +1,3 @@
-/*
- *
- *  * Copyright 2023 VMware, Inc.
- *  * SPDX-License-Identifier: GPL-3.0
- *
- */
-
 package spring.modern.data.caching;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -13,9 +6,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
-@ConfigurationProperties(prefix = "spring.redis.cluster")
-@Profile("redis")
+//@Component
+//@ConfigurationProperties(prefix = "spring.redis.cluster")
+//@Profile("valkey")
 public class RedisClusterConfigurationProperties {
     /*
      * spring.redis.cluster.nodes[0] = 127.0.0.1:7379

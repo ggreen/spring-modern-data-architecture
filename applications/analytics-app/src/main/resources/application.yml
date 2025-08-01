@@ -1,0 +1,110 @@
+server:
+  port: 9099
+spring:
+  application:
+    name: retail-analytics-app
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      model: llama3
+      init:
+        pull-model-strategy: always
+        timeout: 60s
+        max-retries: 1
+    vectorstore:
+      pgvector:
+        idType: TEXT
+        schema-name: retail
+        initialize-schema: true
+        dimensions: 1024
+  config:
+    import: "optional:configserver:http://localhost:8888/"
+  redis:
+    cluster:
+      #      Comma-delimited list of host:port pairs.
+      nodes: localhost:6379,localhost:6372
+    username : retail
+  sql:
+    init:
+      mode: always
+  datasource:
+    initialization-mode: always
+    #
+  jpa:
+#    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate.default_schema: retail
+#      ddl-auto: update
+#      ddl-auto: create
+  cloud:
+#    function.definition: calculateFavoritesConsumer;orderConsumer
+    function:
+      definition: calculateFavoritesConsumer;orderConsumer;saveProductConsumer;saveProductReviewConsumer
+    stream:
+      default:
+        contentType: "application/json"
+      bindings:
+        calculateFavoritesConsumer-in-0:
+          destination: retail.calculateFavorites
+          group: ${spring.application.name}
+          consumer:
+            concurrency: 1
+        orderConsumer-in-0:
+          destination: retail.customer.orders
+          group: ${spring.application.name}
+          consumer:
+            concurrency: 1
+        saveProductConsumer-in-0:
+          destination: retail.products
+          group: ${spring.application.name}
+          consumer:
+            concurrency: 1
+        saveProductReviewConsumer-in-0:
+          destination: retail.product.review.customer
+          group: ${spring.application.name}
+          consumer:
+            concurrency: 1
+        saveProductReviewConsumer-out-0:
+          destination: retail.product.review.customer.output
+      rabbit:
+        default:
+          group: myQueue
+          requiredGroups: true
+          dlqQuorum:
+            enabled:  true
+          quorum:
+            enabled: true
+        bindings:
+          orderConsumer-in-0:
+            consumer:
+              autoBindDlq: true
+              quorum.enabled: true
+              dlqQuorum:
+                enabled: true
+              prefetch: 10000
+          calculateFavoritesConsumer-in-0:
+            consumer:
+              autoBindDlq: true
+              quorum.enabled: true
+              dlqQuorum:
+                enabled: true
+              prefetch: 10000
+retail:
+  favorites:
+    top:
+      count: 3
+  frequent:
+    bought:
+      confidence: 0.0000001
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health
+  wavefront:
+    application:
+      name: retail-analytics-app
+      service-name: retail-analytics-app

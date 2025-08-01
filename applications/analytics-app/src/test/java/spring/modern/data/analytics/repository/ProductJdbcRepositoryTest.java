@@ -1,9 +1,4 @@
-/*
- *
- *  * Copyright 2023 VMware, Inc.
- *  * SPDX-License-Identifier: GPL-3.0
- *
- */
+
 
 package spring.modern.data.analytics.repository;
 
@@ -68,7 +63,7 @@ class ProductJdbcRepositoryTest {
         assertEquals(expected, actual);
         verify(jdbcTemplate).query(anyString(),
                 any(RowCallbackHandler.class),
-                anyString(), //customerId
+                anyString(), //id
                 any()); //topCount
     }
 

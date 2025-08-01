@@ -1,20 +1,15 @@
-/*
- *
- *  * Copyright 2023 VMware, Inc.
- *  * SPDX-License-Identifier: GPL-3.0
- *
- */
+
 
 package spring.modern.data.source.controller;
 
 import nyla.solutions.core.patterns.conversion.Converter;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
+import nyla.solutions.core.patterns.integration.Publisher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import spring.modern.data.domains.customer.Product;
 
 import java.util.List;
@@ -31,26 +26,24 @@ class ProductControllerTest {
     private ProductController subject;
 
     @Mock
-    private RabbitTemplate template;
+    private Publisher<List<Product>> publisher;
     @Mock
     private Converter<String, List<Product>> csvToProductsConverter;
     private List<Product> products = asList(
             JavaBeanGeneratorCreator.of(Product.class).create(),
             JavaBeanGeneratorCreator.of(Product.class).create()
     );
-    private String exchange = "exchange";
-    private String routingKey = "";
 
     @BeforeEach
     void setUp() {
-        subject = new ProductController(template,exchange,routingKey,csvToProductsConverter);
+        subject = new ProductController(publisher,csvToProductsConverter);
     }
 
     @Test
     void loadProducts() {
         subject.loadProducts(products);
 
-        verify(template).convertAndSend(anyString(),anyString(),any(Object.class));
+        verify(publisher).send(any());
     }
 
     @Test
@@ -63,6 +56,8 @@ class ProductControllerTest {
         when(csvToProductsConverter.convert(anyString())).thenReturn(products);
         subject.loadProductsCsv(csv);
 
-        verify(template).convertAndSend(anyString(),anyString(),any(Object.class));
+        verify(publisher).send(any());
     }
+
+
 }

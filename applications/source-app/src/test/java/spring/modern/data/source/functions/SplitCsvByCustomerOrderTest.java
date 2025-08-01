@@ -1,9 +1,4 @@
-/*
- *
- *  * Copyright 2023 VMware, Inc.
- *  * SPDX-License-Identifier: GPL-3.0
- *
- */
+
 
 package spring.modern.data.source.functions;
 
@@ -23,7 +18,7 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 class SplitCsvByCustomerOrderTest {
 
-    private String exchange ="customerId";
+    private String exchange ="id";
     private int customerIdCol = 1;
     private int orderIdCol = 0;
     private SplitCsvByCustomerOrder subject;

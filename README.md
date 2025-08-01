@@ -37,7 +37,7 @@ Demo/Records/Webinars
 
 ![web-app-img.png](docs/diagrams/web-app-img.png)
 
-- Spring Boot Web App real-time access from GemFire
+- Spring Boot Web App real-time access from ValKey or GemFire
 - Spring Boot App sink application to populate data from RabbitMQ
 - Spring App for data analytics using (Postgres, MySQL or Greenplum) and RabbitMQ to pushes data to GemFire
 Spring Boot App source to provide API integration interfaces to send to RabbitMQ
@@ -53,8 +53,6 @@ Spring Boot App source to provide API integration interfaces to send to RabbitMQ
 | [retail-cache-sink-app](applications/retail-cache-sink-app)   | Saves customer favorites and [performs pub/sub](https://redis.io/docs/interact/pubsub/) of promotions using [GemFire for Redis Apps](https://docs.vmware.com/en/VMware-GemFire-for-Redis-Apps/index.html) |
 | [retail-source-app](applications/retail-source-app)           | Exposes an HTTP API interface to receive product catalog in JSON and customer orders in CSV                                                                                                               |
 | [jdbc-sql-console-app](applications/jdbc-sql-console-app)     | Generic application to perform SQL query in a configured database                                                                                                                                         | 
-| [spring-gf-locator](applications/spring-gf-locator)           | Spring Boot with [Embedded GemFire locator](https://docs.vmware.com/en/VMware-GemFire/10.0/gf/configuring-running-running_the_locator.html)                                                               |
- | [spring-gf-redis-server](applications/spring-gf-redis-server) | Spring Boot Redis Server with [Embedded GemFire cache server](https://docs.vmware.com/en/VMware-GemFire/10.0/gf/configuring-running-running_the_cacheserver.html)                                         |
 
 # Building Applications
 

@@ -1,10 +1,3 @@
-/*
- *
- *  * Copyright 2023 VMware, Inc.
- *  * SPDX-License-Identifier: GPL-3.0
- *
- */
-
 package spring.modern.data.caching;
 
 import lombok.extern.slf4j.Slf4j;

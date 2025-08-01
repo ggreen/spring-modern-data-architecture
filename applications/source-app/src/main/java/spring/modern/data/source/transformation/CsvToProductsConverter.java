@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Convert CSV to the product data
  * @author gregory green
  */
 @Component
@@ -20,6 +21,11 @@ public class CsvToProductsConverter implements Converter<String, List<Product>> 
     private static final int ID_COL = 0;
     private static final int NAME_COL = 1;
 
+    /**
+     * 
+     * @param csv the object to convert
+     * @return the product based on the CSV data
+     */
     @SneakyThrows
     @Override
     public List<Product> convert(String csv) {

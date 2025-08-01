@@ -1,9 +1,4 @@
-/*
- *
- *  * Copyright 2023 VMware, Inc.
- *  * SPDX-License-Identifier: GPL-3.0
- *
- */
+
 
 package spring.modern.data.controller;
 
@@ -22,7 +17,7 @@ import static org.mockito.Mockito.verify;
 class IndexControllerTest {
     @Mock
     private Model model;
-    private String customerIdAttribId ="customerId";
+    private String customerIdAttribId ="id";
     private String customerId = "junit";
 
     @Test

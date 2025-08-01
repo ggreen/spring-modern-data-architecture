@@ -1,12 +1,12 @@
-/*
- *
- *  * Copyright 2023 VMware, Inc.
- *  * SPDX-License-Identifier: GPL-3.0
- *
- */
+
 
 package spring.modern.data;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import nyla.solutions.core.patterns.integration.Publisher;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisOperations;
 import spring.modern.data.domains.customer.Promotion;
 import spring.modern.data.repository.ProductRepository;
 import spring.modern.data.repository.valkey.CustomerFavoriteValKeyRepository;
@@ -30,6 +30,8 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import spring.modern.data.service.QueryProductService;
 import spring.modern.data.service.QueryProductServiceByFindAllStream;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Calendar;
 import java.util.function.Consumer;
 
@@ -53,8 +55,14 @@ public class ValKeyConfig
     @Value("${spring.application.name}")
     private String applicationName;
 
-    @Value("${retail.promotion.listener.pattern.topic}")
+    @Value("${retail.promotion.listener.pattern.topic:promotions}")
     private String patternTopic;
+
+    @Value("${retail.customer.id}")
+    private String user;
+
+    @Value("${retail.valkey.publish.channel:promotions}")
+    private String publishChannel;
 
     public ValKeyConfig()
     {
@@ -90,6 +98,18 @@ public class ValKeyConfig
         messageListener.afterPropertiesSet();
         container.addMessageListener(messageListener,PatternTopic.of(this.patternTopic));
         return container;
+    }
+
+    @Bean
+    Publisher<Promotion> promotionPublisher(RedisOperations<String,Promotion> redisOperations, ObjectMapper objectMapper)
+    {
+        return promotion -> {
+                // send message through RedisOperations
+                var numberOfClients = redisOperations.convertAndSend(publishChannel, promotion);
+
+                log.info("Published to numberOfClients:{} ",numberOfClients);
+        };
+
     }
 
     @Bean

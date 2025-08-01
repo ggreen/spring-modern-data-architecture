@@ -29,6 +29,44 @@ Example
 java -jar applications/retail-analytics-app/target/retail-analytics-app-0.0.3-SNAPSHOT.jar --spring.profiles.active=postgres,local-postgres,product-quorum
 ```
 
+
+## Getting Start Local
+
+Start ollama
+
+```shell
+ollama serve
+```
+
+
+```shell
+ollama run llama3
+```
+
+
+Start RabbitMQ
+
+```shell
+deployments/local/scripts/data-services/rabbitmq/rabbitmq-run-podman.sh
+```
+Start PostgresM
+
+```shell
+docker run --rm -it \
+  --name postgresql \
+  -e POSTGRESQL_USERNAME=postgres \
+  -e POSTGRESQL_DATABASE=postgres \
+  -e ALLOW_EMPTY_PASSWORD=yes \
+  -p 5432:5432 \
+  bitnami/postgresql:latest
+```
+
+
+```sql
+drop table vector_store;
+```
+
+
 # Misc.
 
 ## Useful Postgres SQL

@@ -1,20 +1,20 @@
 <html>
     <head>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="styles/styles.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+        <link rel="stylesheet" href="styles/styles.css"/>
 
-
+        <script src="/scripts/site.js"></script>
         <script src="/webjars/sockjs-client/sockjs.min.js"></script>
         <script src="/webjars/stomp-websocket/stomp.min.js"></script>
         <script src="/webjars/jquery/jquery.min.js"></script>
         <script>
-                   //Web Sockets
+        //Web Sockets
         var socket = new SockJS('/gs-guide-websocket');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
 
-        var userName = "nyla";
+        var userName = "${id}";
 
         stompClient.subscribe('/topic/customerPromotions/'+userName, function (promotionResponse) {
 
@@ -61,7 +61,9 @@
 
          promotionContent.innerHTML = promotionHTML;
 
-        }
+        }//-------------------
+
+
         </script>
 
         <script>
@@ -70,14 +72,15 @@
                 //clear panels
                 $("#productsPanel").html("");
                 var productName = $("#productSearch").val();
-                var urlForProductContainsSearch = "products/product/name/"+productName;
-                $.get(urlForProductContainsSearch, function(products, status){
+                var urlForProductContainsSearch = "products/customer/reviews/name/"+productName;
 
-                    var tableHTML = "<table class='dataRows'><tr><th>Id</th><th>Name</th></tr>";
-                    for (let x in products) {
-                        product = products[x];
+                $.get(urlForProductContainsSearch, function(productReviewSummaries, status){
 
-                        tableHTML +="<tr>"+"<td>"+product.id+"</td>"+"<td>"+product.name+"</td>"+"</tr>";
+                    var tableHTML = "<table class='dataRows'><tr><th>Id</th><th>Name</th><th>Review</th></tr>";
+                    for (let x in productReviewSummaries) {
+                        var productReviewSummary = productReviewSummaries[x];
+
+                        tableHTML +="<tr id='productReview'>"+"<td>"+productReviewSummary.id+"</td>"+"<td>"+productReviewSummary.product.name+"</td>"+"<td>"+decorateProductReviews(productReviewSummary.productReview)+"</td>"+"</tr>";
                      }
                      tableHTML +="</table>";
 
@@ -86,12 +89,13 @@
               });
             });
         </script>
+        <title>spring-modern-data-architecture</title>
     </head>
 
     <body>
 
     <h1>Retail Application Demo</h1>
-     <h4>Hello, flaky</h4>
+     <h4>Hello ${id},</h4>
         <ul>
             <li><a href="/swagger-ui.html">Swagger-UI</a></li>
         </ul>
