@@ -9,7 +9,7 @@ This project provides a reference implement on how to use spring projects such a
 
 ![](docs/diagrams/architecture.jpeg)
 
-Instructors: miverson@vmware.com, demetriousr@vmware.com , gregoryg@vmware.com
+Authors: Morgan Iverson, Demetrious Robinson and Gregory Green
 
 Pre-requisites
 
@@ -22,7 +22,7 @@ Pre-requisites
 ### GemFire - Build Dependency
 
 -Note: This repository uses Tanzu GemFire
--GemFire for Redis is free to use for local development.
+-GemFire is free to use for local development.
 -
 -In order to build, please follow the instruction [here]((https://docs.vmware.com/en/VMware-GemFire/10.0/gf/getting_started-installation-obtain_gemfire_maven.html)) to setup your credentials in your .m2/settings.xml file to access the
 -dependencies in the [GemFire maven repository](https://docs.vmware.com/en/VMware-GemFire/10.0/gf/getting_started-installation-obtain_gemfire_maven.html).
