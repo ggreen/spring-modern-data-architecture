@@ -11,65 +11,80 @@
 
 cf marketplace
 
+# AI
+
+local-llama-33-70b-instruct
+#cf create-service genai multi-model-rag-ultra retail-ai
+# qwen 3 ultra plan = prod-chat-tools-qwen3-ultra,
+# and nomic embed plan = prod-embedding-nomic-text, rod-chat-tools-qwen3-ultra
+
+cf create-service genai local-llama-33-70b-instruct retail-ai-chat
+cf create-service genai prod-embedding-nomic-text retail-ai-embedding
+cf create-service genai local-mistrall-small-32-2506-gpu retail-ai-mistrall
+
+
+
+# Valkey
+
+cf create-service p.redis on-demand-cache retail-caching
 ## GemFire
 
 #small
-cf create-service p-cloudcache extra-small  retail-gemfire -t gemfire
+#cf create-service p-cloudcache extra-small  retail-gemfire -t gemfire
 
 ##  SQL
 
 cf create-service postgres on-demand-postgres-db retail-sql
 
-cf create-service  p.mysql db-small retail-scdf-sql
+#cf create-service  p.mysql db-small retail-scdf-sql
 
 
 ## RabbitMQ
 
-cf create-service p.rabbitmq on-demand-plan retail-rabbitmq
+cf create-service p.rabbitmq on-demand-plan retail-messaging  -c '{ "plugins": { "rabbitmq_stream": true, "rabbitmq_stream_management": true } }'
 
-#cf create-service p.rabbitmq single-node retail-rabbitmq  -c '{ "plugins": { "rabbitmq_stream": true, "rabbitmq_stream_management": true } }'
+#cf create-service p.rabbitmq single-node retail-messaging  -c '{ "plugins": { "rabbitmq_stream": true, "rabbitmq_stream_management": true } }'
 
-#cf update-service retail-rabbitmq -c '{ "plugins": { "rabbitmq_stream": true, "rabbitmq_stream_management": true } }'
+#cf update-service retail-messaging -c '{ "plugins": { "rabbitmq_stream": true, "rabbitmq_stream_management": true } }'
 
 # Prometheus
-
-cf push prometheus --docker-image prom/prometheus --var PORT=9090
+#cf push prometheus --docker-image prom/prometheus --var PORT=9090
 # ----------------
 # SCDF DataFlow
 
 cf create-service p-dataflow standard scdf
 
- -c '{"services": ["retail-scdf-sql","retail-rabbitmq"] }'
+ -c '{"services": ["retail-scdf-sql","retail-messagain"] }'
 
 # -----------------------------
 # WAIT FOR SERVICE to be available
 
-rabbit_status=`cf service retail-rabbitmq | grep status:`
+rabbit_status=`cf service retail-messaging | grep status:`
 
 while [[ "$rabbit_status" != *"create succeeded"* ]]
 do
   echo "Waiting for Rabbitmq, current status:" $rabbit_status
   sleep 1
-  rabbit_status=`cf service retail-rabbitmq | grep status:`
+  rabbit_status=`cf service retail-messaging | grep status:`
 done
 
 
 mysql_status=`cf service retail-sql | grep status:`
-echo "Waiting for mysql, current status:" $mysql_status
+echo "Waiting for sql database, current status:" $mysql_status
 while [[ "$mysql_status" != *"create succeeded"* ]]
 do
-  echo "Waiting for mysql, current status:" $mysql_status
+  echo "Waiting for database, current status:" $mysql_status
   sleep 1
   mysql_status=`cf service retail-sql | grep status:`
 done
 
 
-gemfire_status=`cf service retail-gemfire | grep status:`
-echo "Waiting for gemfire, current status:" $gemfire_status
-while [[ "$gemfire_status" != *"create succeeded"* ]]
+caching_status=`cf service retail-caching | grep status:`
+echo "Waiting for caching service, current status:" $caching_status
+while [[ "$caching_status" != *"create succeeded"* ]]
 do
-  echo "Waiting for gemfire, current status:" $gemfire_status
-  gemfire_status=`cf service retail-gemfire | grep status:`
+  echo "Waiting for caching service, current status:" $caching_status
+  caching_status=`cf service retail-caching | grep status:`
   sleep 1
 done
 
@@ -97,37 +112,35 @@ done
 
 #--------------------
 # Push Applications
-cf push retail-cache-sink-app -f deployments/cloud/cloudFoundry/apps/retail-cache-sink-app/retail-cache-sink-app.yaml -p applications/retail-cache-sink-app/target/retail-cache-sink-app-0.1.2-SNAPSHOT.jar
-
+#cf push retail-cache-sink-app -f deployments/cloud/cloudFoundry/apps/retail-cache-sink-app/retail-cache-sink-app.yaml -p applications/cache-sink-app/target/cache-sink-app-0.2.0-SNAPSHOT.jar
+./deployments/cloud/cloudFoundry/apps/retail-cache-sink-app/cf-push.sh
 # retail-source-app
 ./deployments/cloud/cloudFoundry/apps/retail-source-app/cf-push.sh
 
-
 # retail-web-app
-cf push retail-web-app -f deployments/cloud/cloudFoundry/apps/retail-web-app/retail-web-app.yaml -p applications/retail-web-app/target/retail-web-app-0.1.1-SNAPSHOT.jar
-
+./deployments/cloud/cloudFoundry/apps/retail-web-app/cf-push.sh
 
 # retail-analytics-app
 ./deployments/cloud/cloudFoundry/apps/retail-analytics-app/cf-push.sh
 
-
 # jdbc-sql-console-app
-cf push jdbc-sql-console-app -f deployments/cloud/cloudFoundry/apps/jdbc-sql-console-app/jdbc-sql-console-app.yaml -p applications/jdbc-sql-console-app/target/jdbc-sql-console-app-0.0.2-SNAPSHOT.jar
+./deployments/cloud/cloudFoundry/apps/jdbc-sql-console-app/cf-push.sh
+#cf push jdbc-sql-console-app -f deployments/cloud/cloudFoundry/apps/jdbc-sql-console-app/jdbc-sql-console-app.yaml -p applications/jdbc-sql-console-app/target/jdbc-sql-console-app-0.0.2-SNAPSHOT.jar
 
 #-------------------
 # Create a service key GemFire
-cf create-service-key retail-gemfire retail-gemfire-key
+cf create-service-key retail-caching retail-caching-key
 
 # Inspect the service key:
-cf service-key retail-gemfire retail-gemfire-key
+cf service-key retail-caching retail-caching-key
 
 
 #-------------------
 # Create a service key RabbitMQ
-cf create-service-key retail-rabbitmq retail-rabbitmq-key -c '{"tags":"administrator"}'
+cf create-service-key retail-messaging retail-messaging-key -c '{"tags":"administrator"}'
 
 # Inspect the service key:
-cf service-key retail-rabbitmq retail-rabbitmq-key
+cf service-key retail-messaging retail-messaging-key
 
 
 #-------------------
@@ -138,7 +151,7 @@ cf create-service-key retail-sql retail-sql-key
 cf service-key retail-sql retail-sql-key
 
 
-./deployments/cloud/cloudFoundry/apps/gemfire-gideon-console/cf-push.sh
+#./deployments/cloud/cloudFoundry/apps/gemfire-gideon-console/cf-push.sh
 
 
 

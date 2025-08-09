@@ -3,8 +3,9 @@ applications:
     memory: 1400M
     log-rate-limit-per-second: -1
     services:
-      - retail-rabbitmq
-      - retail-gemfire
+      - retail-messaging
+      - retail-caching
     env:
       JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 17.+}}'
-      SPRING_PROFILES_ACTIVE: 'gemfire'
+      SPRING_PROFILES_ACTIVE: 'valkey'
+#      SPRING_PROFILES_ACTIVE: 'gemfire'

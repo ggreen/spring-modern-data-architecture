@@ -1,6 +1,12 @@
 
+/**
+ * @productReview the product review details
+ */
 function decorateProductReviews(productReview)
 {
+    if(productReview == null)
+       return "";
+
     var customerReview  = {};
     //<tr><th>sentiment</th><th>Comment</th></tr>
     var productReviewsHtml = "<table>";

@@ -4,26 +4,26 @@ spring:
   application:
     name: retail-analytics-app
   ai:
-    ollama:
-      base-url: http://localhost:11434
-      model: llama3
-      init:
-        pull-model-strategy: always
-        timeout: 60s
-        max-retries: 1
+#    ollama:
+#      base-url: http://localhost:11434
+#      model: llama3
+#      init:
+#        pull-model-strategy: always
+#        timeout: 60s
+#        max-retries: 1
     vectorstore:
       pgvector:
         idType: TEXT
         schema-name: retail
         initialize-schema: true
         dimensions: 1024
-  config:
-    import: "optional:configserver:http://localhost:8888/"
-  redis:
-    cluster:
-      #      Comma-delimited list of host:port pairs.
-      nodes: localhost:6379,localhost:6372
-    username : retail
+#  config:
+#    import: "optional:configserver:http://localhost:8888/"
+#  redis:
+#    cluster:
+#      #      Comma-delimited list of host:port pairs.
+#      nodes: localhost:6379,localhost:6372
+#    username : retail
   sql:
     init:
       mode: always

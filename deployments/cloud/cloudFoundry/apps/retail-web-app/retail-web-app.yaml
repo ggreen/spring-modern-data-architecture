@@ -3,8 +3,9 @@ applications:
     memory: 1400M
     log-rate-limit-per-second: -1
     services:
-      - retail-gemfire
+      - retail-caching
     env:
-      spring.profiles.active: gemfire
+      spring.profiles.active: valkey
+#      spring.profiles.active: gemfire
       JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 17.+}}'
       retail.customer.id: 'nyla'

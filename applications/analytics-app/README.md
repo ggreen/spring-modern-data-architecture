@@ -83,6 +83,13 @@ Get current connection information
 ```
 
 
+Setup PgVector
+
+```shell
+CREATE EXTENSION vector;
+```
+
+
 ```shell
 CREATE USER retail WITH PASSWORD 'retail';
 create schema retail;
