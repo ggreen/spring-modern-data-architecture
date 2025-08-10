@@ -37,7 +37,7 @@ class CsvToCustomerReviewsConverterTest {
     void convert() {
         List<CustomerReview> expected = List.of(customerReview);
 
-        String reviewsCsv = Text.formatText(csv,
+        String reviewsCsv = Text.formatMap(csv,
                 Map.of("id",customerReview.id(),
                         "productId",customerReview.productId(),
                         "review",customerReview.review(),
@@ -58,7 +58,7 @@ class CsvToCustomerReviewsConverterTest {
                     .review(customerReview.review())
                 .build());
 
-        var reviewsCsvNoSentiment = Text.formatText(csv_no_sentiment,
+        var reviewsCsvNoSentiment = Text.formatMap(csv_no_sentiment,
                 Map.of("id",customerReview.id(),
                         "productId",customerReview.productId(),
                         "review",customerReview.review()));

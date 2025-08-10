@@ -6,6 +6,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import nyla.solutions.core.exception.TooManyRowsException;
 import nyla.solutions.core.io.csv.CsvReader;
+import nyla.solutions.core.util.Organizer;
 import org.springframework.stereotype.Component;
 import spring.modern.data.domains.customer.CustomerIdentifier;
 import spring.modern.data.domains.customer.order.CustomerOrder;
@@ -16,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-import static nyla.solutions.core.util.Organizer.getByIndex;
 
 @Slf4j
 @Component
@@ -52,20 +52,20 @@ public class CsvToCustomerOrder implements Function<String, CustomerOrder> {
         String orderId = null;
 
         for (List<String> row : csvReader){
-          rowOrderIdText = getByIndex(row,orderCol);
+          rowOrderIdText = Organizer.organize(row).getByIndex(orderCol);
           if(orderId != null && !orderId.equals(rowOrderIdText))
               throw new TooManyRowsException("Cannot process multiple orderId(s) ("+orderId+","+rowOrderIdText+")");
 
           orderId = rowOrderIdText;
 
-          rowCustomerId = getByIndex(row,customerCol);
+          rowCustomerId = Organizer.organize(row).getByIndex(customerCol);
           if(customerId != null && !customerId.equals(rowCustomerId))
               throw new TooManyRowsException("Cannot process multiple id(s) ("+customerId+","+rowCustomerId+")");
 
           customerId = rowCustomerId;
 
-          productId = getByIndex(row,productIdCol);
-          quantityText = getByIndex(row, quantityCol);
+          productId = Organizer.organize(row).getByIndex(productIdCol);
+          quantityText = Organizer.organize(row).getByIndex(quantityCol);
 
           productOrders.add(new ProductOrder(productId, Integer.valueOf(quantityText)));
         }
