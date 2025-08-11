@@ -9,7 +9,7 @@ applications:
       - retail-ai-embedding
     env:
       JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 17.+}}'
-      spring.profiles.active: 'postgres,rabbit-product-quorum'
+      spring.profiles.active: 'openai,postgres,rabbit-product-quorum'
 
 #      spring.datasource.url: ${vcap.services.postgres.credentials.jdbcUrl}
 #      spring.datasource.username: ${vcap.services.postgres.credentials.username}
