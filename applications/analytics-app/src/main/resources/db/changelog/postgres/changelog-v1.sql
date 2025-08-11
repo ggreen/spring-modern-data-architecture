@@ -1,7 +1,9 @@
 -- liquibase formatted sql
 -- changeset liquibaseuser:1
 
-create extension vector;
+CREATE EXTENSION IF NOT EXISTS vector;
+
+-- rollback drop EXTENSION vector;
 
 create sequence customer_seq;
 -- rollback drop sequence customer_seq;

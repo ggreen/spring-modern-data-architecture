@@ -29,8 +29,11 @@ public class SentimentConfig {
         return text -> {
             String prompt = """
             Analyze the sentiment of this text: "{text}".
-            Respond in json format with response field value is one word: Positive, or Negative
+            Respond in JSON format with response field value with Positive, or Negative
             """;
+
+            log.info("Asking mode: {}, prompt: {}",chatModel.getDefaultOptions().getModel(),prompt);
+
             var  sentiment = ChatClient.create(chatModel).prompt()
                     .user(u -> u.text(prompt)
                             .param("text", text))
