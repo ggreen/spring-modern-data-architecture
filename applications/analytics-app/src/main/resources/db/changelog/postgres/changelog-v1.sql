@@ -28,7 +28,7 @@ id text PRIMARY KEY,
 DATA JSONB);
 -- rollback drop table product_reviews;
 
-CREATE TABLE vector_store (
+CREATE TABLE IF NOT EXISTS vector_store (
 	id text NOT NULL,
 	"content" text NULL,
 	metadata json NULL,
