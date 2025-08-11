@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import spring.modern.data.analytics.consumers.service.SentimentService;
 import spring.modern.data.domains.customer.reviews.Sentiment;
+import spring.modern.data.domains.customer.reviews.SentimentResponse;
 
 @Configuration
 @Slf4j
@@ -28,17 +29,19 @@ public class SentimentConfig {
         return text -> {
             String prompt = """
             Analyze the sentiment of this text: "{text}".
-            Respond with only one word: Positive, or Negative
+            Respond in json format with response field value is one word: Positive, or Negative
             """;
             var  sentiment = ChatClient.create(chatModel).prompt()
                     .user(u -> u.text(prompt)
                             .param("text", text))
                     .advisors(advisor)
                     .call()
-                    .entity(Sentiment.class);
+                    .entity(SentimentResponse.class);
             log.info("text: {}, Sentiment:{}",text, sentiment);
 
-            return sentiment;
+            if(sentiment == null)
+                return null;
+            return sentiment.response();
         };
 
     }

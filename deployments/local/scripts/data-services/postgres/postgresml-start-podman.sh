@@ -1,4 +1,4 @@
-podman run --rm \
+podman run --name=postgresml --rm \
     -it \
     -v postgresml_data:/var/lib/postgresql \
     -p 5433:5432 \

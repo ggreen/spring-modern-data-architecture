@@ -13,5 +13,4 @@ public class RetailAnalyticsApp {
 		Config.loadArgs(args);
 		SpringApplication.run(RetailAnalyticsApp.class, args);
 	}
-
 }
