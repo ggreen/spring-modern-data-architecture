@@ -71,3 +71,6 @@ retail:
     customer:
       reviews:
         destination: "retail.product.review.customer"
+      review:
+        context:
+          destination: "retail.review.vector.context"
