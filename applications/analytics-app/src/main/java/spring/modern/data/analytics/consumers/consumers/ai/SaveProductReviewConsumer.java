@@ -1,4 +1,4 @@
-package spring.modern.data.analytics.consumers.consumers;
+package spring.modern.data.analytics.consumers.consumers.ai;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +12,10 @@ import spring.modern.data.domains.customer.reviews.ProductReview;
 import java.util.TreeSet;
 import java.util.function.Consumer;
 
+/**
+ * Save the product review to the repository
+ * @author gregory green
+ */
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -21,6 +25,10 @@ public class SaveProductReviewConsumer implements Consumer<CustomerReview> {
     private final ProductReviewRepository productReviewRepository;
     private final Publisher<ProductReview> broadcaster;
 
+    /**
+     * Saves the customer review
+     * @param customerReview the provided customer review
+     */
     @Override
     public void accept(CustomerReview customerReview) {
 

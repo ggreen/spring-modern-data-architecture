@@ -31,7 +31,7 @@ retail:
                 (select product_id, sum(quantity) as product_cnt
                       from retail.customer_orders
                       group by product_id) count_by_product,
-                products p
+                retail.products p
                 where count_by_product.product_id = top_associations.original_SKU
                 and cast(top_associations.times_bought_together as double precision)/
                 cast(count_by_product.product_cnt as  double precision) > :confidence

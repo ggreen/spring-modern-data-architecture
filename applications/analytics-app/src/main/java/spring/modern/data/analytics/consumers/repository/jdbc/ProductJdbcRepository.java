@@ -73,6 +73,12 @@ public class ProductJdbcRepository implements ProductRepository {
 
         final SortedSet<ProductQuantity> productQuantities = new TreeSet<>();
 
+
+        log.info("customerId: {}, topCount:{}, findCustomerFavoritesByCustomerIdAndTopCountSql: {}",
+                customerId,
+                topCount,
+                findCustomerFavoritesByCustomerIdAndTopCountSql);
+
         jdbcTemplate.query(findCustomerFavoritesByCustomerIdAndTopCountSql, rs -> {
                     try {
                         var productJson = rs.getString("data");

@@ -6,13 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import spring.modern.data.analytics.consumers.consumers.ai.SaveProductReviewConsumer;
 import spring.modern.data.analytics.consumers.repository.ProductReviewRepository;
 import spring.modern.data.analytics.consumers.service.SentimentService;
 import spring.modern.data.domains.customer.reviews.CustomerReview;
 import spring.modern.data.domains.customer.reviews.ProductReview;
-import spring.modern.data.domains.customer.reviews.Sentiment;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
