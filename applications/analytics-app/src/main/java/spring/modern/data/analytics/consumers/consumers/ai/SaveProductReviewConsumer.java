@@ -2,10 +2,10 @@ package spring.modern.data.analytics.consumers.consumers.ai;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import nyla.solutions.core.patterns.integration.Publisher;
 import org.springframework.stereotype.Component;
 import spring.modern.data.analytics.consumers.repository.ProductReviewRepository;
 import spring.modern.data.analytics.consumers.service.SentimentService;
+import spring.modern.data.analytics.consumers.service.messaging.BroadcastService;
 import spring.modern.data.domains.customer.reviews.CustomerReview;
 import spring.modern.data.domains.customer.reviews.ProductReview;
 
@@ -24,7 +24,7 @@ public class SaveProductReviewConsumer implements Consumer<CustomerReview> {
 
     private final SentimentService sentimentService;
     private final ProductReviewRepository productReviewRepository;
-    private final Publisher<ProductReview> broadcaster;
+    private final BroadcastService broadcaster;
 
     /**
      * Saves the customer review
@@ -66,7 +66,7 @@ public class SaveProductReviewConsumer implements Consumer<CustomerReview> {
 
         log.info("Saved: {}",productReview);
 
-        broadcaster.send(productReview); //broadcast latest changes
+        broadcaster.sendProductReview(productReview); //broadcast latest changes
 
     }
 

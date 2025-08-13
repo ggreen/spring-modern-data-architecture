@@ -1,6 +1,5 @@
 package spring.modern.data.analytics.consumers.consumers.ai;
 
-import nyla.solutions.core.patterns.integration.Publisher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -8,6 +7,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import spring.modern.data.analytics.consumers.repository.ProductReviewRepository;
 import spring.modern.data.analytics.consumers.service.SentimentService;
+import spring.modern.data.analytics.consumers.service.messaging.BroadcastService;
 import spring.modern.data.domains.customer.reviews.CustomerReview;
 import spring.modern.data.domains.customer.reviews.ProductReview;
 
@@ -29,7 +29,7 @@ class SaveProductReviewConsumerTest {
     private ProductReviewRepository productReviewRepository;
 
     @Mock
-    private Publisher<ProductReview> productReviewBroadcaster;
+    private BroadcastService productReviewBroadcaster;
 
     private SaveProductReviewConsumer subject;
     private final CustomerReview customerView = CustomerReview.builder().review("review")
@@ -48,7 +48,7 @@ class SaveProductReviewConsumerTest {
 
         verify(sentimentService).analyze(any());
         verify(productReviewRepository).save(any());
-        verify(productReviewBroadcaster).send(any());
+        verify(productReviewBroadcaster).sendProductReview(any());
 
     }
 

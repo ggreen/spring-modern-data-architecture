@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import spring.modern.data.analytics.consumers.service.BroadcastService;
+import spring.modern.data.analytics.consumers.service.messaging.BroadcastService;
 import spring.modern.data.analytics.consumers.service.PromotionRecommendationService;
 import spring.modern.data.analytics.consumers.service.impl.CustomerAnalyticsDataService;
 import spring.modern.data.domains.customer.*;
@@ -84,7 +84,7 @@ class CustomerAnalyticsDataServiceTest {
 
         subject.constructFavorites(customIdentifier);
 
-        verify(broadcastService).publishCustomerFavorites(any(CustomerFavorites.class));
+        verify(broadcastService).sendCustomerFavorites(any(CustomerFavorites.class));
     }
 
     @Test
@@ -99,7 +99,7 @@ class CustomerAnalyticsDataServiceTest {
         assertEquals(expected, actual);
         verify(productRepository).findFrequentlyBoughtTogether(customerOrder.productOrders());
         verify(promotionRecommendationService).createPromotion(any(),any());
-        verify(broadcastService).publishPromotion(any(Promotion.class));
+        verify(broadcastService).sendPromotion(any(Promotion.class));
 
     }
 
@@ -111,7 +111,7 @@ class CustomerAnalyticsDataServiceTest {
         assertNull(actual);
 
         verify(productRepository).findFrequentlyBoughtTogether(customerOrder.productOrders());
-        verify(broadcastService,never()).publishPromotion(any(Promotion.class));
+        verify(broadcastService,never()).sendPromotion(any(Promotion.class));
 
     }
 }

@@ -3,7 +3,7 @@
 package spring.modern.data.analytics.consumers.service.impl;
 
 import spring.modern.data.analytics.consumers.repository.ProductRepository;
-import spring.modern.data.analytics.consumers.service.BroadcastService;
+import spring.modern.data.analytics.consumers.service.messaging.BroadcastService;
 import spring.modern.data.analytics.consumers.service.CustomerAnalyticService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,7 +55,7 @@ public class CustomerAnalyticsDataService implements CustomerAnalyticService {
         var customerFavorites = productRepository.findCustomerFavoritesByCustomerIdAndTopCount(customerId, topCount);
 
         log.info("Sending customerFavorites: {}",customerFavorites);
-        this.broadcastService.publishCustomerFavorites(customerFavorites);
+        this.broadcastService.sendCustomerFavorites(customerFavorites);
     }
 
     /**
@@ -84,7 +84,7 @@ public class CustomerAnalyticsDataService implements CustomerAnalyticService {
                 recommendations);
 
         log.info("Publishing promotion : {}",promotion);
-        this.broadcastService.publishPromotion(promotion);
+        this.broadcastService.sendPromotion(promotion);
 
         return promotion;
 
