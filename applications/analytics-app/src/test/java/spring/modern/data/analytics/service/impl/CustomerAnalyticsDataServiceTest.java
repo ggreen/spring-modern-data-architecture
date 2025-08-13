@@ -8,7 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import spring.modern.data.analytics.consumers.service.BroadcastService;
+import spring.modern.data.analytics.consumers.service.PromotionRecommendationService;
 import spring.modern.data.analytics.consumers.service.impl.CustomerAnalyticsDataService;
 import spring.modern.data.domains.customer.*;
 import spring.modern.data.domains.customer.order.CustomerOrder;
@@ -28,36 +29,37 @@ import static org.mockito.Mockito.*;
 class CustomerAnalyticsDataServiceTest {
 
     @Mock
-    private RabbitTemplate rabbitTemplate;
-    @Mock
     private ProductRepository productRepository;
 
     @Mock
     private CustomerAnalyticsDataService subject;
 
+    @Mock
+    private PromotionRecommendationService promotionRecommendationService;
 
-    private String promotionExchange = "promotions";
-    private String customerFavoritesExchange = "favorites";
-    private final int top3 = 3;
+    @Mock
+    private BroadcastService broadcastService;
+
+    private final static int top3 = 3;
     private CustomerFavorites favorites;
-    private String id = "id";
+    private final static String id = "id";
     private SortedSet<ProductQuantity> favoriteSet = new TreeSet<>();
     private ProductQuantity productQuantity = JavaBeanGeneratorCreator
                         .of(ProductQuantity.class).create();
 
-    private Product expectedProduct = new Product("id","name");
-    private List<Product> expectedProducts = asList(expectedProduct);
-    private String expectedId = "id";
-    private Promotion expected = new Promotion(expectedId,null,expectedProducts);
+    private final static Product expectedProduct = new Product("id","name");
+    private final static List<Product> expectedProducts = asList(expectedProduct);
+    private final static String expectedId = "id";
+    private final static Promotion expected = new Promotion(expectedId,null,expectedProducts);
 
-    private Long orderId = 3L;
-    private String productId = "pId";
-    private int quantity = 3;
-    private String customerId = "id";
-    private ProductOrder productOrder = new ProductOrder(productId,quantity);
-    private CustomerIdentifier customerIdentifier = new CustomerIdentifier(customerId);
-    private List<ProductOrder> productOrders = asList(productOrder);
-    private CustomerOrder customerOrder = new CustomerOrder(orderId,customerIdentifier,productOrders);
+    private final static Long orderId = 3L;
+    private final static String productId = "pId";
+    private final static int quantity = 3;
+    private final static String customerId = "id";
+    private final static ProductOrder productOrder = new ProductOrder(productId,quantity);
+    private final static CustomerIdentifier customerIdentifier = new CustomerIdentifier(customerId);
+    private final static List<ProductOrder> productOrders = asList(productOrder);
+    private final static CustomerOrder customerOrder = new CustomerOrder(orderId,customerIdentifier,productOrders);
 
     @BeforeEach
     void setUp() {
@@ -66,11 +68,10 @@ class CustomerAnalyticsDataServiceTest {
         favorites = new CustomerFavorites(id,favoriteSet);
 
         subject = new CustomerAnalyticsDataService(
-                rabbitTemplate,
                 productRepository,
                 top3,
-                customerFavoritesExchange,
-                promotionExchange);
+                broadcastService,
+                promotionRecommendationService);
 
     }
 
@@ -83,20 +84,22 @@ class CustomerAnalyticsDataServiceTest {
 
         subject.constructFavorites(customIdentifier);
 
-        verify(rabbitTemplate).convertAndSend(anyString(),anyString(),any(CustomerFavorites.class));
+        verify(broadcastService).publishCustomerFavorites(any(CustomerFavorites.class));
     }
 
     @Test
     void given_customerOrder_getRecommendations_based_onOrders_thenPublish_Recommendations() {
 
         when(productRepository.findFrequentlyBoughtTogether(any())).thenReturn(expectedProducts);
+        when(promotionRecommendationService.createPromotion(any(),any())).thenReturn(expected);
+
 
         var actual = subject.publishPromotion(customerOrder);
 
         assertEquals(expected, actual);
-
         verify(productRepository).findFrequentlyBoughtTogether(customerOrder.productOrders());
-        verify(rabbitTemplate).convertAndSend(anyString(),anyString(),any(Promotion.class));
+        verify(promotionRecommendationService).createPromotion(any(),any());
+        verify(broadcastService).publishPromotion(any(Promotion.class));
 
     }
 
@@ -108,7 +111,7 @@ class CustomerAnalyticsDataServiceTest {
         assertNull(actual);
 
         verify(productRepository).findFrequentlyBoughtTogether(customerOrder.productOrders());
-        verify(rabbitTemplate,never()).convertAndSend(anyString(),anyString(),any(Promotion.class));
+        verify(broadcastService,never()).publishPromotion(any(Promotion.class));
 
     }
 }
