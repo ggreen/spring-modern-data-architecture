@@ -50,4 +50,20 @@ class CsvToProductsConverterTest {
         assertThat(actual).isNotNull();
 
     }
+
+
+    @Test
+    void defectEmptyLines() {
+        var csv = """
+                sku1, Peanut butter 
+                "sku2, Jelly\n
+                "sku3, Bread\n
+                "sku4, Milk
+                
+                """;
+
+        var actual = subject.convert(csv);
+        assertThat(actual).isNotNull();
+
+    }
 }

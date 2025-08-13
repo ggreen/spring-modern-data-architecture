@@ -12,16 +12,27 @@ import lombok.Builder;
 public record CustomerReview(String id, String productId, String review, Sentiment sentiment) implements Comparable<CustomerReview> {
 
     @Override
-    public int compareTo(CustomerReview o) {
-        if(o == null)
+    public int compareTo(CustomerReview other) {
+
+        if(other == null)
             return 1;
 
-        if(this.id == o.id)
-            return 0;
+        // Compare id first
+        int cmp = compareStrings(this.id, other.id);
+        if (cmp != 0) return cmp;
 
-        if(this.id == null)
-            return 1;
+        // Then compare productId
+        cmp = compareStrings(this.productId, other.productId);
+        if (cmp != 0) return cmp;
 
-        return this.id.compareTo(o.id);
+        // Finally compare review
+        return compareStrings(this.review, other.review);
+    }
+
+    private static int compareStrings(String s1, String s2) {
+        if (s1 == s2) return 0;         // same object or both null
+        if (s1 == null) return -1;      // nulls first
+        if (s2 == null) return 1;
+        return s1.compareTo(s2);        // lexicographical
     }
 }

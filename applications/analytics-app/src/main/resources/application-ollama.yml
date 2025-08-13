@@ -1,0 +1,9 @@
+spring:
+  ai:
+    model:
+      embedding: ollama
+      chat: ollama
+    ollama:
+      chat:
+        options:
+          format: "json"

@@ -13,14 +13,16 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class CustomerReviewControllerTest {
 
     @Mock
     private Publisher<CustomerReview> customerReviewPublisher;
+    @Mock
+    private Publisher<String> customerProductReviewContextPublisher;
+
     @Mock
     private Converter<String,List<CustomerReview>> converter;
 
@@ -37,7 +39,7 @@ class CustomerReviewControllerTest {
         customerReview1 = CustomerReview.builder().id("1").build();
         customerReview2 = CustomerReview.builder().id("2").build();
         customerReviews = List.of(customerReview1,customerReview2);
-        subject = new CustomerReviewController(customerReviewPublisher,converter);
+        subject = new CustomerReviewController(customerReviewPublisher,converter,customerProductReviewContextPublisher);
     }
 
     @Test
@@ -51,9 +53,40 @@ class CustomerReviewControllerTest {
     @Test
     void loadCustomerReviewersCsv() {
 
+        when(converter.convert(any())).thenReturn(customerReviews);
+
         subject.loadCustomerReviewsCsv(csv);
 
         verify(converter).convert(anyString());
+
+        verify(customerReviewPublisher,times(customerReviews.size())).send(any());
+    }
+
+
+    @Test
+    void loadCustomerProductContextReview(){
+
+        subject.loadCustomerProductReviewContext("I love JUNIT is a positive sentiment");
+
+        verify(customerProductReviewContextPublisher).send(any());
+
+    }
+
+    @Test
+    void loadCustomerProductContextReviewNull(){
+
+        subject.loadCustomerProductReviewContext(null);
+
+        verify(customerProductReviewContextPublisher,never()).send(any());
+
+    }
+
+    @Test
+    void loadCustomerProductContextReviewEmpty(){
+
+        subject.loadCustomerProductReviewContext("");
+
+        verify(customerProductReviewContextPublisher,never()).send(any());
 
     }
 }

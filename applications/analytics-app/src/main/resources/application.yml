@@ -15,7 +15,7 @@ spring:
       pgvector:
         idType: TEXT
         schema-name: retail
-        initialize-schema: true
+        initialize-schema: false
         dimensions: 1024
 #  config:
 #    import: "optional:configserver:http://localhost:8888/"
@@ -24,12 +24,9 @@ spring:
 #      #      Comma-delimited list of host:port pairs.
 #      nodes: localhost:6379,localhost:6372
 #    username : retail
-  sql:
-    init:
-      mode: always
-  datasource:
-    initialization-mode: always
-    #
+#  sql:
+#    init:
+#      mode: always
   jpa:
 #    generate-ddl: true
     show-sql: true
@@ -42,7 +39,7 @@ spring:
   cloud:
 #    function.definition: calculateFavoritesConsumer;orderConsumer
     function:
-      definition: calculateFavoritesConsumer;orderConsumer;saveProductConsumer;saveProductReviewConsumer
+      definition: calculateFavoritesConsumer;orderConsumer;saveProductConsumer;saveProductReviewConsumer;saveVectorContextConsumer
     stream:
       default:
         contentType: "application/json"
@@ -69,6 +66,11 @@ spring:
             concurrency: 1
         saveProductReviewConsumer-out-0:
           destination: retail.product.review.customer.output
+        saveVectorContextConsumer-in-0:
+          destination: retail.review.vector.context
+          group: ${spring.application.name}
+          consumer:
+            concurrency: 1
       rabbit:
         default:
           group: myQueue

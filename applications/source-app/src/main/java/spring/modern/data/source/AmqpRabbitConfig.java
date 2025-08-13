@@ -36,6 +36,9 @@ public class AmqpRabbitConfig {
     @Value("${retail.products.routingKey:}")
     private String productsRoutingKey;
 
+    @Value("${retail.product.customer.review.context.destination}")
+    private String customerProductReviewContextExchange;
+
     @Bean
     TopicExchange productExchange(){
         return new TopicExchange(productExchange);
@@ -68,6 +71,15 @@ public class AmqpRabbitConfig {
            log.info("Publishing to exchange:{} reviews:{}",customerReviewsExchange,customerReview);
            amqpTemplate.convertAndSend(customerReviewsExchange,customerReview.id(),customerReview);
        };
+    }
+
+    @Bean
+    Publisher<String> customerProductReviewContextPublisher(AmqpTemplate amqpTemplate)
+    {
+        return customerProductReviewContex -> {
+            log.info("Publishing to exchange:{} reviews:{}",customerProductReviewContextExchange,customerProductReviewContex);
+            amqpTemplate.convertAndSend(customerProductReviewContextExchange,"",customerProductReviewContex);
+        };
     }
 
     @Bean

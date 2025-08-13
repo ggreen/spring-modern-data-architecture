@@ -33,13 +33,15 @@ public class SentimentConfig {
             """;
 
             log.info("Asking mode: {}, prompt: {}",chatModel.getDefaultOptions().getModel(),prompt);
-
+            var startTime = System.currentTimeMillis();
             var  sentiment = ChatClient.create(chatModel).prompt()
                     .user(u -> u.text(prompt)
                             .param("text", text))
                     .advisors(advisor)
                     .call()
                     .entity(SentimentResponse.class);
+            var endTime = System.currentTimeMillis();
+            log.info("AI Model took {}ms to response",endTime-startTime);
             log.info("text: {}, Sentiment:{}",text, sentiment);
 
             if(sentiment == null)
