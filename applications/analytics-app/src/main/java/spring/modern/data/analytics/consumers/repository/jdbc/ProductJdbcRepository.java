@@ -25,6 +25,10 @@ import java.util.TreeSet;
 
 import static nyla.solutions.core.util.Organizer.toMap;
 
+/**
+ * Data access for the retail product data
+ * @author gregory green
+ */
 @Repository
 @Slf4j
 @ConditionalOnProperty(name = "greenplum",havingValue = "false",matchIfMissing = true)
@@ -34,9 +38,9 @@ public class ProductJdbcRepository implements ProductRepository {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
-    private double confidence;
+    private final double confidence;
 
 
     private final String findCustomerFavoritesByCustomerIdAndTopCountSql;
@@ -44,8 +48,7 @@ public class ProductJdbcRepository implements ProductRepository {
 
     private final String frequentBoughtSql;
 
-
-    private String insertSql;
+    private final String insertSql;
 
     public ProductJdbcRepository(JdbcTemplate jdbcTemplate,
                                  NamedParameterJdbcTemplate namedParameterJdbcTemplate,
@@ -91,11 +94,18 @@ public class ProductJdbcRepository implements ProductRepository {
         Map<String, ?> map = toMap("productIds", productOrders.stream().map( po -> po.productId()).toList(),
                 "confidence",confidence);
 
-        log.info(" Sql: {} productOrders: {} confidence > {} ",frequentBoughtSql,productOrders,confidence);
+        log.info("confidence > {}   productOrders: {} ",confidence, productOrders);
+        log.info("Sql: {} ", frequentBoughtSql);
 
 
         RowMapper<Product> rowMapper = (rs , rowNum) -> {
             try {
+                var boughtCount = rs.getString("times_bought_together");
+                var product_cnt = rs.getString("product_cnt");
+                var confidence = rs.getString("confidence");
+
+                log.info("boughtCount: {}, product_cnt: {}, confidence: {}",boughtCount,product_cnt,confidence);
+
                 return objectMapper.readValue(rs.getString("data"),Product.class);
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);

@@ -14,7 +14,9 @@ retail:
 
   frequent:
     bought:
-      sql: "select distinct p.data
+      sql: "select distinct p.data, times_bought_together times_bought_together, 
+			count_by_product.product_cnt product_cnt, 
+			(times_bought_together/count_by_product.product_cnt) confidence
                 from (
                 SELECT c.original_SKU as original_SKU, c.bought_with as bought_with, count(*) as times_bought_together
                 FROM (

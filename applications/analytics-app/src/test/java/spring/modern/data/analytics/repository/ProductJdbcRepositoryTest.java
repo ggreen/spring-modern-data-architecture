@@ -36,10 +36,10 @@ class ProductJdbcRepositoryTest {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     private ProductJdbcRepository subject;
-    private double confidence = 0.1;
-    private String frequentBoughtSql = "select * from table";
-    private String findCustomerFavoritesByCustomerIdAndTopCountSql = "select * from table";
-    private String insertSql = "insert into table";
+    private final double confidence = 0.1;
+    private final static String frequentBoughtSql = "select * from table";
+    private final static String findCustomerFavoritesByCustomerIdAndTopCountSql = "select * from table";
+    private final static String insertSql = "insert into table";
 
     @BeforeEach
     void setUp() {

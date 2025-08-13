@@ -98,7 +98,7 @@ retail:
       count: 3
   frequent:
     bought:
-      confidence: 0.0000001
+      confidence: 0.000000001
 management:
   endpoints:
     web:
