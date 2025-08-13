@@ -1,5 +1,6 @@
 <html>
     <head>
+        <title>Retail Web Application</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
         <link rel="stylesheet" href="styles/styles.css"/>
 

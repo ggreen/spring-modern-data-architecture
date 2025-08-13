@@ -9,6 +9,7 @@ import spring.modern.data.analytics.consumers.service.SentimentService;
 import spring.modern.data.domains.customer.reviews.CustomerReview;
 import spring.modern.data.domains.customer.reviews.ProductReview;
 
+import java.util.ArrayList;
 import java.util.TreeSet;
 import java.util.function.Consumer;
 
@@ -59,9 +60,7 @@ public class SaveProductReviewConsumer implements Consumer<CustomerReview> {
 
         log.info("productReview: {}",productReview);
 
-        productReview
-                .customerReviews()
-                .add(customerReview);
+        productReview = addCustomerReview(customerReview, productReview);
 
         productReviewRepository.save(productReview);
 
@@ -69,5 +68,19 @@ public class SaveProductReviewConsumer implements Consumer<CustomerReview> {
 
         broadcaster.send(productReview); //broadcast latest changes
 
+    }
+
+    ProductReview addCustomerReview(CustomerReview customerReview, ProductReview productReview) {
+
+        var customerReviews = new ArrayList<>(
+                productReview.customerReviews()
+                .stream()
+                        .filter( oldReview -> !oldReview.id().equals(customerReview.id()))
+                                .toList());
+        customerReviews.add(customerReview);
+
+        return ProductReview.builder().id(productReview.id()).customerReviews(
+                new TreeSet<>(customerReviews))
+                .build();
     }
 }
