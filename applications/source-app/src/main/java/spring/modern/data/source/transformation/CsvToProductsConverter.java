@@ -41,6 +41,7 @@ public class CsvToProductsConverter implements Converter<String, List<Product>> 
             if(row.size() != 2)
             {
                 log.warn("Skipping invalid row: {}",row);
+                continue;
             }
 
             list.add(new Product(row.get(ID_COL),row.get(NAME_COL)));
