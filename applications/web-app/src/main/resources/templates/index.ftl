@@ -46,7 +46,7 @@
         }
 
         var promotionContent = document.getElementById("promotions");
-        var promotionHTML = "<p>Based on your previous order, you may also be interested in the following:</p>";
+        var promotionHTML = "<p>"+promotion.marketingMessage+":</p>";
          var product = {};
 
          promotionHTML += "<table id='dataRows'>";

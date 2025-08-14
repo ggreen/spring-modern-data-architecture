@@ -12,6 +12,11 @@ import spring.modern.data.domains.customer.reviews.SentimentResponse;
 
 import java.util.List;
 
+/**
+ * @author gregory green
+ * @param chatClient the chat client
+ * @param advisor the Vector RAG advisor
+ */
 @Service
 @Slf4j
 public record ChatModelService(ChatClient chatClient,

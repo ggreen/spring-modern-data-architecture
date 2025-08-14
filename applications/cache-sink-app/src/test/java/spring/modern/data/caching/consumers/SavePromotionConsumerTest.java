@@ -2,6 +2,7 @@
 
 package spring.modern.data.caching.consumers;
 
+import nyla.solutions.core.patterns.integration.Publisher;
 import spring.modern.data.caching.consumers.SavePromotionConsumer;
 import spring.modern.data.repository.PromotionRepository;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
@@ -21,6 +22,8 @@ class SavePromotionConsumerTest {
     @Mock
     private PromotionRepository repository;
 
+    @Mock
+    private Publisher<Promotion> publisher;
 
     private SavePromotionConsumer subject;
     private Promotion expected = JavaBeanGeneratorCreator.of(Promotion.class).create();
@@ -29,10 +32,11 @@ class SavePromotionConsumerTest {
     void given_Promotion_when_save_then_when_save_then_repository_saves() {
 
 
-        subject = new SavePromotionConsumer(repository);
+        subject = new SavePromotionConsumer(repository,publisher);
 
         subject.accept(expected);
 
         verify(this.repository).save(any(Promotion.class));
+        verify(this.publisher).send(any());
     }
 }

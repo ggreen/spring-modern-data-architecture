@@ -7,6 +7,9 @@
 
 package spring.modern.data.caching;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
+import nyla.solutions.core.patterns.integration.Publisher;
 import nyla.solutions.core.util.Text;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContextAware;
@@ -14,10 +17,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
+import spring.modern.data.domains.customer.Promotion;
 import spring.modern.data.repository.valkey.CustomerFavoriteValKeyRepository;
 
 import java.util.Calendar;
@@ -30,6 +35,7 @@ import java.util.Calendar;
 @Configuration
 @EnableRedisRepositories(basePackageClasses = CustomerFavoriteValKeyRepository.class)
 @Profile("valkey")
+@Slf4j
 public class ValKeyConfig
 {
     @Value("${spring.application.name}")
@@ -40,6 +46,9 @@ public class ValKeyConfig
     {
         return new GenericJackson2JsonRedisSerializer();
     }
+
+    @Value("${retail.valkey.publish.channel:promotions}")
+    private String publishChannel;
 
     /**
      * Type safe representation of application.properties
@@ -55,6 +64,17 @@ public class ValKeyConfig
     }
 
 
+    @Bean
+    Publisher<Promotion> promotionPublisher(RedisOperations<String,Promotion> redisOperations, ObjectMapper objectMapper)
+    {
+        return promotion -> {
+            // send message through RedisOperations
+            var numberOfClients = redisOperations.convertAndSend(publishChannel, promotion);
+
+            log.info("Published to numberOfClients:{} ",numberOfClients);
+        };
+
+    }
     @Bean
     ApplicationContextAware listener(RedisTemplate<String,String> redisTemplate)
     {
