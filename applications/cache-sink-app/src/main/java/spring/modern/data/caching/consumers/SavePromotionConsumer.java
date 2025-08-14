@@ -20,10 +20,10 @@ public record SavePromotionConsumer(PromotionRepository promotionRepository, Pub
 
     @Override
     public void accept(Promotion promotion) {
-        log.info("Saving Promotion: {}",promotion);
+        log.info("Saving the Promotion: {}",promotion);
         promotionRepository.save(promotion);
 
-        log.info("Publish Promotion: {}",promotion);
+        log.info("Publish the Promotion: {}",promotion);
         promotionPublisher.send(promotion);
 
     }
