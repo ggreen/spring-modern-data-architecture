@@ -1,6 +1,6 @@
 package spring.modern.data.analytics.service.impl;
 
-import spring.modern.data.analytics.consumers.repository.ProductRepository;
+import spring.modern.data.analytics.repository.ProductRepository;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -8,9 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import spring.modern.data.analytics.consumers.service.messaging.BroadcastService;
-import spring.modern.data.analytics.consumers.service.PromotionRecommendationService;
-import spring.modern.data.analytics.consumers.service.impl.CustomerAnalyticsDataService;
+import spring.modern.data.analytics.service.messaging.BroadcastService;
+import spring.modern.data.analytics.service.ai.AiService;
 import spring.modern.data.domains.customer.*;
 import spring.modern.data.domains.customer.order.CustomerOrder;
 import spring.modern.data.domains.customer.order.ProductOrder;
@@ -35,7 +34,7 @@ class CustomerAnalyticsDataServiceTest {
     private CustomerAnalyticsDataService subject;
 
     @Mock
-    private PromotionRecommendationService promotionRecommendationService;
+    private AiService aiService;
 
     @Mock
     private BroadcastService broadcastService;
@@ -71,7 +70,7 @@ class CustomerAnalyticsDataServiceTest {
                 productRepository,
                 top3,
                 broadcastService,
-                promotionRecommendationService);
+                aiService);
 
     }
 
@@ -91,14 +90,14 @@ class CustomerAnalyticsDataServiceTest {
     void given_customerOrder_getRecommendations_based_onOrders_thenPublish_Recommendations() {
 
         when(productRepository.findFrequentlyBoughtTogether(any())).thenReturn(expectedProducts);
-        when(promotionRecommendationService.createPromotion(any(),any())).thenReturn(expected);
+        when(aiService.createPromotion(any(),any())).thenReturn(expected);
 
 
         var actual = subject.publishPromotion(customerOrder);
 
         assertEquals(expected, actual);
         verify(productRepository).findFrequentlyBoughtTogether(customerOrder.productOrders());
-        verify(promotionRecommendationService).createPromotion(any(),any());
+        verify(aiService).createPromotion(any(),any());
         verify(broadcastService).sendPromotion(any(Promotion.class));
 
     }

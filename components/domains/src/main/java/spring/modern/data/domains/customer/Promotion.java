@@ -2,6 +2,8 @@
 
 package spring.modern.data.domains.customer;
 
+import lombok.Builder;
+
 import java.util.List;
 
 /*
@@ -20,6 +22,7 @@ import java.util.List;
  }
 
  */
+@Builder
 public record Promotion(String id, String marketingMessage, List<Product> products)
 {
 }

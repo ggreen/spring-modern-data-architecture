@@ -2,7 +2,7 @@
 
 package spring.modern.data.analytics.repository;
 
-import spring.modern.data.analytics.consumers.repository.jdbc.ProductGreenplumRepository;
+import spring.modern.data.analytics.repository.jdbc.ProductGreenplumRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

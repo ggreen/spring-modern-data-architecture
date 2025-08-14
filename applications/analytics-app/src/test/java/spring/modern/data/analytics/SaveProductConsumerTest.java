@@ -1,0 +1,37 @@
+
+
+package spring.modern.data.analytics;
+
+import spring.modern.data.analytics.repository.ProductRepository;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import spring.modern.data.analytics.consumers.SaveProductConsumer;
+import spring.modern.data.domains.customer.Product;
+
+import java.util.List;
+
+import static java.util.Arrays.asList;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+
+@ExtendWith(MockitoExtension.class)
+class SaveProductConsumerTest {
+
+    @Mock
+    private ProductRepository repository;
+
+    @Test
+    void given_products_when_accept_when_save_to_database() {
+
+        var subject = new SaveProductConsumer(repository);
+        List<Product> products = asList(new Product("id","name"));
+
+        subject.accept(products);
+
+        verify(repository).saveProducts(any(List.class));
+
+
+    }
+}
