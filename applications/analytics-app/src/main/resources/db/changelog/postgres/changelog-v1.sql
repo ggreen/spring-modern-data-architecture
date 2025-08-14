@@ -32,7 +32,8 @@ CREATE TABLE IF NOT EXISTS vector_store (
 	id text NOT NULL,
 	"content" text NULL,
 	metadata json NULL,
-	embedding vector(1024) NULL,
+	embedding vector(768) NULL,
+--	embedding vector(1024) NULL,
 	CONSTRAINT vector_store_pkey PRIMARY KEY (id)
 );
 

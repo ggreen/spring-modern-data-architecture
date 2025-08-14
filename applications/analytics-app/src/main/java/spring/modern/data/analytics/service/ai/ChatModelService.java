@@ -10,6 +10,7 @@ import spring.modern.data.domains.customer.Promotion;
 import spring.modern.data.domains.customer.reviews.Sentiment;
 import spring.modern.data.domains.customer.reviews.SentimentResponse;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -41,7 +42,7 @@ public record ChatModelService(ChatClient chatClient,
                 .prompt()
                 .user(u -> u.text(promotionPrompt)
                         .param("customer", customerIdentifier.customerId())
-                        .param("products",recommends))
+                        .param("products",toProductNames(recommends)))
                         .advisors(advisor)
                         .call();
 
@@ -50,6 +51,18 @@ public record ChatModelService(ChatClient chatClient,
         return Promotion.builder().marketingMessage(marketingMsg)
                 .products(recommends)
                 .id(customerIdentifier.customerId()).build();
+    }
+
+    /**
+     * Convert product to names
+     * @param recommends the list of products
+     * @return the list of names
+     */
+    List<String> toProductNames(List<Product> recommends) {
+        if(recommends == null)
+            return Collections.emptyList();
+
+        return recommends.stream().map(Product::name).toList();
     }
 
     @Override

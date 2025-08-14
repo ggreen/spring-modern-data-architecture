@@ -16,7 +16,7 @@ spring:
         idType: TEXT
         schema-name: retail
         initialize-schema: false
-        dimensions: 1024
+#        dimensions: 1024
 #  config:
 #    import: "optional:configserver:http://localhost:8888/"
 #  redis:

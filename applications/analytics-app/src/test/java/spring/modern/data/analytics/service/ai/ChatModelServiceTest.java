@@ -16,6 +16,7 @@ import spring.modern.data.domains.customer.reviews.Sentiment;
 import spring.modern.data.domains.customer.reviews.SentimentResponse;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -40,6 +41,7 @@ class ChatModelServiceTest {
             .createCollection(1));
     @Mock
     private ChatClient.CallResponseSpec callResponseSpec;
+    private List<Product> products = new ArrayList<>(JavaBeanGeneratorCreator.of(Product.class).createCollection(2));
 
     @BeforeEach
     void setUp() {
@@ -83,6 +85,29 @@ class ChatModelServiceTest {
         var actual = subject.analyze(text);
 
         assertEquals(expected, actual);
+
+    }
+
+    @Test
+    void toProductNames() {
+        List<String> expected = this.products.stream().map(Product::name).toList();
+
+        var actual = subject.toProductNames(this.products);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void toProductNamesNull() {
+
+        assertEquals(Collections.emptyList(),subject.toProductNames(null));
+
+    }
+
+    @Test
+    void toProductNamesEmpty() {
+
+        assertEquals(Collections.emptyList(),subject.toProductNames(Collections.emptyList()));
 
     }
 }
