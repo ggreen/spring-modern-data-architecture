@@ -8,11 +8,41 @@
 		<version>3.5.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>spring.modern.data.architecture</groupId>
+	<groupId>com.github.ggreen</groupId>
 	<artifactId>web-app</artifactId>
-	<version>0.2.0-SNAPSHOT</version>
+	<version>0.2.0</version>
 	<name>web-app</name>
 	<description>web-app</description>
+	<url>https://github.com/ggreen/spring-modern-data-architecture/tree/main/applications/web-app</url>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<id>ggreen</id>
+			<name>Gregory Green</name>
+			<email>green_gregory@yahoo.com</email>
+			<organization>Gregory Green</organization>
+			<organizationUrl>https://github.com/ggreen</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:https://github.com/ggreen/spring-modern-data-architecture.git</connection>
+		<developerConnection>scm:git:ssh://github.com/ggreen/spring-modern-data-architecture.git</developerConnection>
+		<url>https://github.com/ggreen/spring-modern-data-architecture.git</url>
+		<tag>HEAD</tag>
+	</scm>
+	<distributionManagement>
+
+		<repository>
+			<id>central</id>
+			<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2025.0.0</spring-cloud.version>
@@ -158,6 +188,60 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+<!--				<version>3.3.0</version>-->
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+<!--				<version>3.6.3</version>-->
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- GPG signing -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+<!--				<version>3.2.4</version>-->
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.central</groupId>
+				<artifactId>central-publishing-maven-plugin</artifactId>
+<!--				<version>0.8.0</version>-->
+				<extensions>true</extensions>
+				<configuration>
+					<publishingServerId>central</publishingServerId>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
