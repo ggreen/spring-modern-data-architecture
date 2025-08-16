@@ -1,66 +1,9 @@
-<!--
-  ~ /*
-  ~  * Copyright 2023 VMware, Inc.
-  ~  * SPDX-License-Identifier: GPL-3.0
-  ~  */
-  -->
 <!DOCTYPE html>
 <html>
 <head>
+    <title>JDBC Console App</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <style>
-        .groove {border-style: groove; width: fit-content;}
-        .key { font-weight: bold;}
-        .string { color: blue;}
-        h1 { color: black; }
-        .labelTable {
-
-               font-family: Arial, Helvetica, sans-serif;
-               border-collapse: collapse;
-             }
-
-             .title
-             {
-                 font-weight: bold;
-             }
-
-              .labelTable td {
-               border: 1px solid #ddd;
-               padding: 8px;
-               width: 200px;
-             }
-
-             .fieldLabel {
-               padding-top: 12px;
-               padding-bottom: 12px;
-               text-align: left;
-               background-color: #659EC7;
-               color: white;
-             }
-
-         .dataTable {
-           font-family: Arial, Helvetica, sans-serif;
-           border-collapse: collapse;
-           width: 100%;
-         }
-
-         .dataTable td, .dataTable th {
-           border: 1px solid #ddd;
-           padding: 8px;
-         }
-
-         .dataTable tr:nth-child(even){background-color: #f2f2f2;}
-
-         .dataTable tr:hover {background-color: #ddd;}
-
-         .dataTable th {
-           padding-top: 12px;
-           padding-bottom: 12px;
-           text-align: left;
-           background-color: #659EC7;
-           color: white;
-         }
-    </style>
+    <link rel="stylesheet" href="styles/site.css"/>
     <script>
         function decorateString(text)
         {
@@ -128,7 +71,7 @@
         }
     </script>
 </head>
-    <body style="font-family: system-ui;">
+    <body>
     <h1>JDBC SQL Console</h1>
     <hr/>
 

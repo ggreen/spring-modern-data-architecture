@@ -31,38 +31,7 @@
         })
     }
 
-    function addPromotion(promotion)
-    {
-       var promotionsPanel = document.getElementById("promotionsPanel");
 
-       if(promotion == null || promotion.products.length == 0)
-        {
-            promotionsPanel.style = "display: none";
-            return;
-        }
-        else
-        {
-            promotionsPanel.style = "display: block";
-        }
-
-        var promotionContent = document.getElementById("promotions");
-        var promotionHTML = "<p>"+promotion.marketingMessage+":</p>";
-         var product = {};
-
-         promotionHTML += "<table id='dataRows'>";
-         promotionHTML += "<tr><th>Product</th></tr>";
-
-         for (let x in promotion.products) {
-            product = promotion.products[x];
-
-            promotionHTML +="<tr><td>"+product.name+"</td></tr>";
-         }
-
-         promotionHTML += "</table>";
-
-         promotionContent.innerHTML = promotionHTML;
-
-        }//-------------------
 
 
         </script>
@@ -76,16 +45,7 @@
                 var urlForProductContainsSearch = "products/customer/reviews/name/"+productName;
 
                 $.get(urlForProductContainsSearch, function(productReviewSummaries, status){
-
-                    var tableHTML = "<table class='dataRows'><tr><th>Id</th><th>Name</th><th>Review</th></tr>";
-                    for (let x in productReviewSummaries) {
-                        var productReviewSummary = productReviewSummaries[x];
-
-                        tableHTML +="<tr id='productReview'>"+"<td>"+productReviewSummary.id+"</td>"+"<td>"+productReviewSummary.product.name+"</td>"+"<td>"+decorateProductReviews(productReviewSummary.productReview)+"</td>"+"</tr>";
-                     }
-                     tableHTML +="</table>";
-
-                    $("#productsPanel").html(tableHTML);
+                    $("#productsPanel").html(decorateProductSearchResults(productReviewSummaries));
                 });
               });
             });

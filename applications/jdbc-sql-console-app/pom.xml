@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>spring.modern.data.architecture</groupId>
 	<artifactId>jdbc-sql-console-app</artifactId>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>0.0.4</version>
 	<name>jdbc-sql-console-app</name>
 	<description>jdbc-sql-console-app</description>
 	<properties>

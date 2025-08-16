@@ -1,10 +1,3 @@
-#
-# /*
-#  * Copyright 2023 VMware, Inc.
-#  * SPDX-License-Identifier: GPL-3.0
-#  */
-#
-
 #--------------------
 # Push Applications
 # retail-analytics-app
