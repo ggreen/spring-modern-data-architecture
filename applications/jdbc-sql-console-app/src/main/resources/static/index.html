@@ -92,6 +92,7 @@
         </a>
         <nav>
             <a href="https://github.com/ggreen/spring-modern-data-architecture/tree/main/applications/jdbc-sql-console-app">Git Repo</a>
+            <a href="/swagger-ui.html">Swagger</a>
         </nav>
     </div>
 </header>
@@ -114,7 +115,7 @@
         <div class="editor">
             <label for="sql">SQL</label>
             <textarea id="sql" placeholder="e.g. --  SELECT * from ..."></textarea>
-            <div class="footnote">This page only handles UI. Hook the <code>runSQL()</code> function to your backend to actually execute queries.</div>
+            <div class="footnote">You must properly configure a JDBC datasource to execute queries.</div>
         </div>
         <div id="output" class="output" aria-live="polite">
             <span class="muted">Results will appear here…</span>
