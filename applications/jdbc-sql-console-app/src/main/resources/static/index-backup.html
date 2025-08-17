@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JDBC Console App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="styles/site.css"/>
+    <script>
+        function decorateString(text)
+        {
+          if(text == undefined)
+            return "&nbsp;";
+          else
+            return new String(text);
+        }
+    </script>
+    <script>
+        $(document).ready(function(){
+          $("button").click(function(){
+
+           //clear results
+           $("#resultsPanel").html("");
+            var sqlText =  $("#sql").val();
+
+
+            $.ajax({
+              url:         "sql",
+              type:        "POST",
+              data:        sqlText,
+              contentType: "text/plain; charset=utf-8",
+              dataType:    "text",
+              success:     function(data, status){
+
+                var prettyJson = syntaxHighlight(data);
+
+                prettyJson = prettyJson.replace(/},{/g, "},<br/>{");
+
+                $("#resultsPanel").html(prettyJson);
+            },
+            error: function (request, status, error) {
+              var htmlError = "<div style='color:red'>"+
+                               request.responseText+
+                               "</div>";
+                 $("#resultsPanel").html(htmlError);
+            }
+            });
+
+          });
+        });
+    </script>
+    <script>
+        function syntaxHighlight(json) {
+            if (typeof json != 'string') {
+                 json = JSON.stringify(json, undefined, 2);
+            }
+            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                var cls = 'number';
+                if (/^"/.test(match)) {
+                    if (/:$/.test(match)) {
+                        cls = 'key';
+                    } else {
+                        cls = 'string';
+                    }
+                } else if (/true|false/.test(match)) {
+                    cls = 'boolean';
+                } else if (/null/.test(match)) {
+                    cls = 'null';
+                }
+                return ' <span class="' + cls + '">' + match + '</span>';
+            });
+        }
+    </script>
+</head>
+    <body>
+    <h1>JDBC SQL Console</h1>
+    <hr/>
+
+    <p>
+        <button>Execute Sql</button> <a href="/swagger-ui.html">Swagger</a>
+    </p>
+    <div>
+        <textarea id="sql" name="sql" rows="10" cols="50"></textarea>
+    </div>
+    <br/>
+    <br/>
+    <div class="groove" id="resultsPanel">
+    </div>
+
+    </body>
+</html>

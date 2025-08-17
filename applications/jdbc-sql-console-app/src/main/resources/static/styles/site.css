@@ -1,0 +1,71 @@
+body {
+
+    font-family: Open Sans, sans-serif;
+    background-color: #212121;
+
+}
+
+ .groove
+ {
+    border-style: groove;
+    width: fit-content;
+    background-color: white;
+}
+
+.key { font-weight: bold;}
+.string { color: blue;}
+
+
+h1 {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    color: #699eca;
+}
+
+.labelTable {
+
+               font-family: Arial, Helvetica, sans-serif;
+               border-collapse: collapse;
+}
+
+.title
+{
+    font-weight: bold;
+}
+
+ .labelTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  width: 200px;
+}
+
+.fieldLabel {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #659EC7;
+  color: white;
+}
+
+.dataTable {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.dataTable td, .dataTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.dataTable tr:nth-child(even){background-color: #f2f2f2;}
+
+.dataTable tr:hover {background-color: #ddd;}
+
+.dataTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #659EC7;
+  color: white;
+}
