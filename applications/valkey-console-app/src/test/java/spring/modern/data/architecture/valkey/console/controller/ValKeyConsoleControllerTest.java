@@ -8,14 +8,17 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
-
+import spring.modern.data.architecture.valkey.console.domain.Command;
 import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
+/**
+ * Test for ValKeyConsoleController
+ */
 @ExtendWith(MockitoExtension.class)
 class ValKeyConsoleControllerTest {
 
@@ -50,8 +53,16 @@ class ValKeyConsoleControllerTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-    //DEL
+    @Test
+    void cmd() {
 
+        assertDoesNotThrow(() -> subject.executeCommand(Command.builder().name("hello").build()));
+        assertDoesNotThrow(() -> subject.executeCommand(Command.builder().name("keys")
+                .parameters(new String[]{}).build()));
+    }
+
+
+    //DEL
     @Test
     void del() {
         String[] keys = {"k1"};
