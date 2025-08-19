@@ -3,11 +3,21 @@
 
 Setup
 
+Create Services
+
+````shell
+cf create-service genai local-llama-33-70b-instruct retail-ai-chat
+cf create-service genai prod-embedding-nomic-text retail-ai-embedding
+cf create-service genai local-mistrall-small-32-2506-gpu retail-ai-mistrall
+````
+
 ```shell
 cf target -s data-demo
 cf push valkey-console-app -f deployments/cloud/cloudFoundry/apps/valkey-console-app/valkey-console-app.yaml  -b java_buildpack_offline -p applications/valkey-console-app/target/valkey-console-app-0.0.2.jar
 cf push jdbc-sql-console-app -f deployments/cloud/cloudFoundry/apps/jdbc-sql-console-app/jdbc-sql-console-app.yaml -b java_buildpack_offline -p applications/jdbc-sql-console-app/target/jdbc-sql-console-app-0.0.4.jar
 cf target -s data-flow-demo
+cf push scdf-valkey-console-app -f deployments/cloud/cloudFoundry/apps/valkey-console-app/valkey-console-app.yaml  -b java_buildpack_offline -p applications/valkey-console-app/target/valkey-console-app-0.0.2.jar
+cf push scdf-jdbc-sql-console-app -f deployments/cloud/cloudFoundry/apps/jdbc-sql-console-app/jdbc-sql-console-app.yaml -b java_buildpack_offline -p applications/jdbc-sql-console-app/target/jdbc-sql-console-app-0.0.4.jar
 ```
 
 Clean Postgres in console
@@ -16,7 +26,7 @@ Clean Postgres in console
 delete from retail.products;
 delete from retail.customer_orders;
 delete from retail.vector_store;
-
+```
 
 
 Delete ValKey Data
@@ -81,13 +91,6 @@ Show Create Services in
 cf target -s data-flow-demo
 ```
 
-
-Create AI Model Services
-```shell
-cf create-service genai local-llama-33-70b-instruct retail-ai-chat
-cf create-service genai prod-embedding-nomic-text retail-ai-embedding
-cf create-service genai local-mistrall-small-32-2506-gpu retail-ai-mistrall
-```
 
 
 View Services
@@ -233,3 +236,113 @@ deployer.cache-sink.cloudfoundry.services=retail-caching
 deployer.cache-sink.cloudfoundry.memory=1400m
 ```
 
+
+Scaling
+
+```csv
+"1","sam","sku1","2"
+"2","sam","sku1","2"
+"3","sam","sku1","2"
+"4","sam","sku1","2"
+"5","sam","sku1","2"
+"6","sam","sku1","2"
+"7","sam","sku1","2"
+"8","sam","sku1","2"
+"9","sam","sku1","2"
+"10","sam","sku1","2"
+"11","sam","sku1","2"
+"12","sam","sku1","2"
+"13","sam","sku1","2"
+"14","sam","sku1","2"
+"15","sam","sku1","2"
+"16","sam","sku1","2"
+"17","sam","sku1","2"
+"18","sam","sku1","2"
+"19","sam","sku1","2"
+"20","sam","sku1","2"
+"21","sam","sku1","2"
+"22","sam","sku1","2"
+"23","sam","sku1","2"
+"24","sam","sku1","2"
+"25","sam","sku1","2"
+"26","sam","sku1","2"
+"27","sam","sku1","2"
+"28","sam","sku1","2"
+"29","sam","sku1","2"
+"30","sam","sku1","2"
+"31","sam","sku1","2"
+"32","sam","sku1","2"
+"33","sam","sku1","2"
+"34","sam","sku1","2"
+"35","sam","sku1","2"
+"36","sam","sku1","2"
+"37","sam","sku1","2"
+"38","sam","sku1","2"
+"39","sam","sku1","2"
+"40","sam","sku1","2"
+"41","sam","sku1","2"
+"42","sam","sku1","2"
+"43","sam","sku1","2"
+"44","sam","sku1","2"
+"45","sam","sku1","2"
+"46","sam","sku1","2"
+"47","sam","sku1","2"
+"48","sam","sku1","2"
+"49","sam","sku1","2"
+"50","sam","sku1","2"
+"51","sam","sku1","2"
+"52","sam","sku1","2"
+"53","sam","sku1","2"
+"54","sam","sku1","2"
+"55","sam","sku1","2"
+"56","sam","sku1","2"
+"57","sam","sku1","2"
+"58","sam","sku1","2"
+"59","sam","sku1","2"
+"60","sam","sku1","2"
+"61","sam","sku1","2"
+"62","sam","sku1","2"
+"63","sam","sku1","2"
+"64","sam","sku1","2"
+"65","sam","sku1","2"
+"66","sam","sku1","2"
+"67","sam","sku1","2"
+"68","sam","sku1","2"
+"69","sam","sku1","2"
+"70","sam","sku1","2"
+"71","sam","sku1","2"
+"72","sam","sku1","2"
+"73","sam","sku1","2"
+"74","sam","sku1","2"
+"75","sam","sku1","2"
+"76","sam","sku1","2"
+"77","sam","sku1","2"
+"78","sam","sku1","2"
+"79","sam","sku1","2"
+"80","sam","sku1","2"
+"81","sam","sku1","2"
+"82","sam","sku1","2"
+"83","sam","sku1","2"
+"84","sam","sku1","2"
+"85","sam","sku1","2"
+"86","sam","sku1","2"
+"87","sam","sku1","2"
+"88","sam","sku1","2"
+"89","sam","sku1","2"
+"90","sam","sku1","2"
+"91","sam","sku1","2"
+"92","sam","sku1","2"
+"93","sam","sku1","2"
+"94","sam","sku1","2"
+"95","sam","sku1","2"
+"96","sam","sku1","2"
+"97","sam","sku1","2"
+"98","sam","sku1","2"
+"99","sam","sku1","2"
+"100","sam","sku1","2"
+```
+
+
+Queues
+
+retail.customer.orders.retail-analytics-app
