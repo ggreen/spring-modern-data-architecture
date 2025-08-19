@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>spring.modern.data.architecture</groupId>
 	<artifactId>analytics-app </artifactId>
-	<version>0.2.0-SNAPSHOT</version>
+	<version>0.2.0</version>
 	<name>analytics-app</name>
 	<description>analytics-app</description>
 	<properties>

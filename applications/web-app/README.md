@@ -11,7 +11,7 @@ deployments/local/scripts/data-services/valkey/valkey-start.sh
 
 
 ```shell
-java -jar applications/web-app/target/web-app-0.2.0-SNAPSHOT.jar --spring.profiles.active=valkey --retail.customer.id=nyla
+java -jar applications/web-app/target/web-app-0.2.0.jar --spring.profiles.active=valkey --retail.customer.id=nyla
 ```
 
 
@@ -24,8 +24,8 @@ mvn spring-boot:build-image
 ```
 
 ```shell
-docker tag web-app:0.2.0-SNAPSHOT cloudnativedata/web-app:0.2.0-SNAPSHOT
-docker push cloudnativedata/web-app:0.2.0-SNAPSHOT
+docker tag web-app:0.2.0 cloudnativedata/web-app:0.2.0
+docker push cloudnativedata/web-app:0.2.0
 ```
 
 

@@ -8,7 +8,7 @@ deployments/local/scripts/data-services/valkey/valkey-start.sh
 Start Web App
 
 ```shell
-java -jar applications/web-app/target/web-app-0.2.0-SNAPSHOT.jar --spring.profiles.active=valkey --retail.customer.id=nyla
+java -jar applications/web-app/target/web-app-0.2.0.jar --spring.profiles.active=valkey --retail.customer.id=nyla
 ```
 
 
@@ -28,7 +28,7 @@ Register
 
 
 ```properties
-sink.retail-analytics=file:///Users/Projects/solutions/Spring/dev/spring-modern-data-architecture/applications/cache-sink-app/target/cache-sink-app-0.2.0-SNAPSHOT.jar
+sink.retail-analytics=file:///Users/Projects/solutions/Spring/dev/spring-modern-data-architecture/applications/cache-sink-app/target/cache-sink-app-0.2.0.jar
 source.retail-source=file:///Users/Projects/solutions/Spring/dev/spring-modern-data-architecture/applications/source-app/target/source-app-0.1.0-SNAPSHOT.jar
 ```
 

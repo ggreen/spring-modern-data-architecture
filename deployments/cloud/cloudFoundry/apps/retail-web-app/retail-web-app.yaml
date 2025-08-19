@@ -1,5 +1,5 @@
 applications:
-  - name: retail-cache-sink-app
+  - name: retail-web-app
     memory: 1400M
     log-rate-limit-per-second: -1
     services:

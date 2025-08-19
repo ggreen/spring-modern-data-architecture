@@ -26,7 +26,7 @@ Set active Profile
 
 Example 
 ```shell
-java -jar applications/analytics-app/target/analytics-app-0.2.0-SNAPSHOT.jar --spring.profiles.active=ollama,postgres,local-postgres,product-quorum
+java -jar applications/analytics-app/target/analytics-app-0.2.0.jar --spring.profiles.active=ollama,postgres,local-postgres,product-quorum
 ```
 
 

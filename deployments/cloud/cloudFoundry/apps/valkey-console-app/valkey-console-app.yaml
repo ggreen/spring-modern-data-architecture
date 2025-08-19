@@ -3,7 +3,7 @@ applications:
     memory: 1400M
     log-rate-limit-per-second: "-1"
     services:
-      - valkey
+      - retail-caching
     env:
       JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 17.+}}'
       JAVA_OPTS: '-Xms700m  -Xmx700m'

@@ -1,1 +1,1 @@
-cf push retail-web-app -f deployments/cloud/cloudFoundry/apps/retail-web-app/retail-web-app.yaml -p applications/web-app/target/web-app-0.2.0.jar
+cf push retail-web-app -f deployments/cloud/cloudFoundry/apps/retail-web-app/retail-web-app.yaml  -b java_buildpack_offline  -p applications/web-app/target/web-app-0.2.0.jar

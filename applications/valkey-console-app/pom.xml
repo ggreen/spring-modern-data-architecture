@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>spring.modern.data.architecture</groupId>
 	<artifactId>valkey-console-app</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.2</version>
 	<name>valkey-console-app</name>
 	<description>valkey-console-app</description>
 	<properties>
