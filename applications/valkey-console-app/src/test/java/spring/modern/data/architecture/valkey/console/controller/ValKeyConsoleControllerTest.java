@@ -1,5 +1,6 @@
 package spring.modern.data.architecture.valkey.console.controller;
 
+import nyla.solutions.core.patterns.conversion.Converter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,6 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -34,9 +36,13 @@ class ValKeyConsoleControllerTest {
     @Mock
     private ValueOperations<String, String> valueOps;
 
+    @Mock
+    private Converter<String, Command> converter;
+    private final static Command expectedCommand = Command.builder().build();
+
     @BeforeEach
     void setUp() {
-        subject = new ValKeyConsoleController(template);
+        subject = new ValKeyConsoleController(template,converter);
     }
 
 
@@ -54,10 +60,24 @@ class ValKeyConsoleControllerTest {
     }
 
     @Test
+    void command() {
+
+        when(converter.convert(anyString())).thenReturn(expectedCommand);
+        subject.executeCommand("keys");
+        verify(converter).convert(anyString());
+    }
+
+    @Test
+    void commandConverterNull() {
+
+        subject.executeCommand("keys");
+        verify(converter).convert(anyString());
+    }
+    @Test
     void cmd() {
 
-        assertDoesNotThrow(() -> subject.executeCommand(Command.builder().name("hello").build()));
-        assertDoesNotThrow(() -> subject.executeCommand(Command.builder().name("keys")
+        assertDoesNotThrow(() -> subject.executeCmd(Command.builder().name("hello").build()));
+        assertDoesNotThrow(() -> subject.executeCmd(Command.builder().name("keys")
                 .parameters(new String[]{}).build()));
     }
 

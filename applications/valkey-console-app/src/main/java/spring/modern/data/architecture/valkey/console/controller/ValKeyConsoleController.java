@@ -2,22 +2,23 @@ package spring.modern.data.architecture.valkey.console.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import nyla.solutions.core.patterns.conversion.Converter;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import spring.modern.data.architecture.valkey.console.domain.Command;
 
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("valKey")
+@RequestMapping("valkey")
 @Slf4j
 public class ValKeyConsoleController {
     private final RedisTemplate<String, String> template;
+    private final Converter<String,Command> converter;
 
     @GetMapping("lrange")
     public List<String> lrange(String key, long start, long end) {
@@ -47,9 +48,12 @@ public class ValKeyConsoleController {
      * @return the string results
      */
     @PostMapping("cmd")
-    public String executeCommand(@RequestBody Command command){
+    public String executeCmd(@RequestBody Command command){
 
         log.info("Executing command: {}",command);
+
+        if(command == null)
+            return null;
 
         byte[][] argBytes;
         if(command.parameters() != null)
@@ -63,6 +67,17 @@ public class ValKeyConsoleController {
         });
 
         return decorateResult(result);
+    }
+
+
+    /**
+     * Execute a generic command
+     * @param command the string command
+     * @return the returns
+     */
+    @PostMapping("command")
+    public String executeCommand(@RequestBody String command) {
+        return executeCmd(converter.convert(command));
     }
 
     /**
@@ -91,4 +106,5 @@ public class ValKeyConsoleController {
 
         return results;
     }
+
 }

@@ -1,5 +1,140 @@
-<h1>Swagger UI</h1>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Valkey Console</title>
+    <meta name="description" content="A minimal Valkey web console: type a command, send to an HTTP endpoint, and see the result." />
+    <style>
+        :root {
+          --vk-bg: #ffffff;
+          --vk-text: #000000;
+          --vk-header: #2d2471; /* Blue header */
+          --vk-border: #ddd;
+          --vk-accent: #2d2471;
+          --radius: 10px;
+          --font: "Open Sans", "Segoe UI", Tahoma, sans-serif;
+        }
 
-<ul>
-    <li><a href="/swagger-ui.html">Swagger-UI</a></li>
-</ul>
+        body {
+          margin: 0;
+          background: var(--vk-bg);
+          color: var(--vk-text);
+          font-family: var(--font);
+        }
+
+        header {
+          background: var(--vk-header);
+          color: #fff;
+          padding: 16px;
+          text-align: center;
+          font-size: 28px;
+          font-family: var(--font);
+        }
+
+        main {
+          max-width: 800px;
+          margin: 40px auto;
+          padding: 20px;
+        }
+
+        .panel {
+          border: 2px solid var(--vk-border);
+          border-radius: var(--radius);
+          padding: 20px;
+        }
+
+        .controls {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          gap: 10px;
+          margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+          font-family: var(--font);
+          font-size: 18px;
+          border: 2px solid var(--vk-border);
+          border-radius: var(--radius);
+          padding: 10px;
+          outline: none;
+          width: 100%;
+        }
+
+        .btn {
+          appearance: none;
+          border: none;
+          border-radius: var(--radius);
+          padding: 10px 20px;
+          background: var(--vk-accent);
+          color: #fff;
+          font-size: 18px;
+          font-family: var(--font);
+          cursor: pointer;
+          transition: background 0.2s;
+        }
+
+        .btn:hover {
+          background: #003d99;
+        }
+
+        .result {
+          border-top: 2px dashed var(--vk-border);
+          padding-top: 20px;
+          font-family: var(--font);
+          white-space: pre-wrap;
+          word-wrap: break-word;
+          font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<header>Valkey Console</header>
+
+<main>
+    <p class="links">
+        <a href="https://github.com/ggreen/spring-modern-data-architecture/tree/main/applications/valkey-console-app" target="_blank">GitHub</a>
+        <a href="/swagger-ui.html" target="_blank">Swagger</a>
+    </p>
+    <section class="panel">
+        <div class="controls">
+            <input id="command" type="text" placeholder="Type a Valkey command (e.g. FLUSHALL,KEYS *, SET key value)" />
+            <button id="run" class="btn">Execute</button>
+        </div>
+        <p><strong>Popular commands:</strong> FLUSHALL, KEYS *, SET key value, GET key value, HGETALL key</p>
+        <div class="result" id="output">Results will appear here…</div>
+    </section>
+</main>
+
+<script>
+    const command = document.getElementById('command');
+    const runBtn = document.getElementById('run');
+    const output = document.getElementById('output');
+
+    async function execute(cmd) {
+      if (!cmd) {
+        output.textContent = 'Please enter a command.';
+        return;
+      }
+      try {
+        const res = await fetch('valkey/command', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' , 'accept': '*/*'},
+          body: cmd
+        });
+        const data = await res.text();
+        output.textContent = data;
+      } catch (err) {
+        output.textContent = 'Error: ' + err.message;
+      }
+    }
+
+    runBtn.addEventListener('click', () => execute(command.value.trim()));
+    command.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        execute(command.value.trim());
+      }
+    });
+</script>
+</body>
+</html>
