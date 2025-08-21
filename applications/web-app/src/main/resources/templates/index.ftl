@@ -1,6 +1,7 @@
 <html>
     <head>
-        <title>Retail Web Application</title>
+        <title>Web Retail Application</title>
+        <link rel="icon" type="image/x-icon" href="img/favicon.png">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
         <link rel="stylesheet" href="styles/styles.css"/>
 
