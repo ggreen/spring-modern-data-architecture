@@ -14,13 +14,16 @@ cd /Users/Projects/solutions/Spring/dev/spring-modern-data-architecture
 Tail logs
 
 ```shell
+cf target -s data-demo
 cf logs retail-analytics-app
+cf logs retail-source-app
 ```
 
 
 Delete Applications
 
 ```shell
+cf target -s data-demo
 cf delete retail-analytics-app -f
 cf delete retail-cache-sink-app  -f
 cf delete retail-source-app   -f
@@ -30,6 +33,7 @@ cf delete retail-web-app  -f
 Check Apps
 
 ```shell
+cf target -s data-demo
 cf apps
 ```
 
@@ -37,11 +41,10 @@ cf apps
 
 ***********
 
-
-
 Push Web, Source, Cache and Analytics App
 
 ```shell
+cf target -s data-demo
 cf push retail-web-app -f deployments/cloud/cloudFoundry/apps/retail-web-app/retail-web-app.yaml -b java_buildpack_offline -p applications/web-app/target/web-app-0.2.0.jar 
 cf push retail-source-app -f deployments/cloud/cloudFoundry/apps/retail-source-app/retail-source-app.yaml  -b java_buildpack_offline -p applications/source-app/target/source-app-0.2.0.jar 
 cf push retail-analytics-app -f deployments/cloud/cloudFoundry/apps/retail-analytics-app/retail-analytics-app-postgres.yaml  -b java_buildpack_offline -p applications/analytics-app/target/analytics-app-0.2.0.jar 
@@ -68,20 +71,13 @@ applications:
 Show Create Services 
 ```shell
 cf target -s data-flow-demo
-```
-
-
-
-View Services
-
-```shell
+cf create-service genai local-llama-33-70b-instruct retail-ai-chat
+cf create-service genai prod-embedding-nomic-text retail-ai-embedding
 cf services
 ```
 
-Review applications in app manager 
 
 
-Reviews Services
 
 retail-source-app Manifest
 
@@ -131,33 +127,11 @@ applications:
 
 
 
-
-
-
 View Applications 
 
 ```shell
 cf target -s data-demo
-```
-
-```shell
 cf apps
-```
-
-Example of Create Services
-
-```shell
-cf target -s data-flow-demo
-cf create-service genai local-llama-33-70b-instruct retail-ai-chat
-cf create-service genai prod-embedding-nomic-text retail-ai-embedding
-cf services
-```
-
-
-Switch Back to main space
-
-```shell
-cf target -s data-demo
 ```
 
 Open Apps Manager
@@ -249,19 +223,21 @@ deployer.cache-sink.cloudfoundry.memory=1400m
 
 Scaling Products
 
+----
+
 
 ```shell
-for i in {1..100}
-do
-  
-  words=("apple" "banana" "cherry" "date" "elderberry")
-  random_word=${words[$RANDOM % ${#words[@]}]}
-  
-  echo \"psku$i\", \"$random_word\"
-done
+cf target -s data-demo
+cf apps
 ```
 
+```shell
+cf logs retail-source-app
+```
 
+```shell
+cf logs retail-analytics-app
+```
 
 ```csv
 "sku6","All natural Bread"
@@ -822,4 +798,12 @@ done
 
 Queues
 
-retail.customer.orders.retail-analytics-app
+retail.products.retail-cache-sink-app
+
+
+Pushing Products
+
+```shell
+cd /Users/Projects/solutions/Spring/dev/spring-modern-data-architecture
+docs/conferences/VMware-Explore/2025/secret/products-scale.sh
+```
