@@ -16,6 +16,10 @@ Tail logs
 ```shell
 cf target -s data-demo
 cf logs retail-analytics-app
+```
+
+```
+cf target -s data-demo
 cf logs retail-source-app
 ```
 
