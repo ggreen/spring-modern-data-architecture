@@ -232,12 +232,20 @@ cf apps
 ```
 
 ```shell
+cf target -s data-demo
 cf logs retail-source-app
 ```
 
 ```shell
+cf target -s data-demo
 cf logs retail-analytics-app
 ```
+
+
+Open RabbitMQ
+
+
+Load 500+ Products
 
 ```csv
 "sku6","All natural Bread"
