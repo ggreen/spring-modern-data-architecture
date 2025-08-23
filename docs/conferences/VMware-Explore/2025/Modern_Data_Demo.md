@@ -11,6 +11,11 @@ cd /Users/Projects/solutions/Spring/dev/spring-modern-data-architecture
 ./deployments/cloud/cloudFoundry/secret/vmware-expore-2025/setup-demo-data.sh
 ```
 
+Tail logs
+
+```shell
+cf logs retail-analytics-app
+```
 
 
 Delete Applications
