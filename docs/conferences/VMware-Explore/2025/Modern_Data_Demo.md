@@ -23,6 +23,25 @@ cf target -s data-demo
 cf logs retail-source-app
 ```
 
+---
+
+Basic Demo
+
+
+- Open Web App
+- Open Source
+- Load Products
+- Submit Orders
+- Only Purchase Jelly or Peanut
+- Submit Reviews
+- Submit Context 
+- Submit Reviews
+- Search Meatloaf Review
+
+
+---
+
+
 
 Delete Applications
 
@@ -137,38 +156,6 @@ View Applications
 cf target -s data-demo
 cf apps
 ```
-
-Open Apps Manager
-
-
-- Open Web App
-- Open Source
-
-
-Load Products
-
-
-Open RabbitMQ
-
-Submit Orders
-
-
-Only Purchase Jelly or Peanut
-
-
-Submit Reviews
-
-Submit Context
-
-Submit Reviews
-
-Open Logs in App Metrics
-
-Search Meatloaf Review
-
-
-
-
 
 -------------
 
