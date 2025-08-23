@@ -17,7 +17,7 @@ local-llama-33-70b-instruct
 #cf create-service genai multi-model-rag-ultra retail-ai
 # qwen 3 ultra plan = prod-chat-tools-qwen3-ultra,
 # and nomic embed plan = prod-embedding-nomic-text, rod-chat-tools-qwen3-ultra
-
+#cf create-service genai prod-chat-tools-qwen3-ultra retail-ai-chat
 cf create-service genai local-llama-33-70b-instruct retail-ai-chat
 cf create-service genai prod-embedding-nomic-text retail-ai-embedding
 cf create-service genai local-mistrall-small-32-2506-gpu retail-ai-mistrall
