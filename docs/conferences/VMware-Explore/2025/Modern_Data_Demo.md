@@ -2,6 +2,10 @@
 ![overview.png](docs/overview.png)
 
 
+got directory
+```shell
+cd /Users/Projects/solutions/Spring/dev/spring-modern-data-architecture
+```
 
 ```shell
 ./deployments/cloud/cloudFoundry/secret/vmware-expore-2025/setup-demo-data.sh
