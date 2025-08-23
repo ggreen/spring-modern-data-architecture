@@ -2,7 +2,7 @@
 ![overview.png](docs/overview.png)
 
 
-got directory
+goto directory
 ```shell
 cd /Users/Projects/solutions/Spring/dev/spring-modern-data-architecture
 ```
