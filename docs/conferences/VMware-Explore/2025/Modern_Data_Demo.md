@@ -1,35 +1,12 @@
 
 ![overview.png](docs/overview.png)
 
-Delete apps
-
-```shell
-cf target -s data-flow-demo
-cf delete-service retail-ai-chat
-cf delete-service retail-ai-embedding
-```
 
 
 ```shell
-
-cf target -s data-demo
+./deployments/cloud/cloudFoundry/secret/vmware-expore-2025/setup-demo-data.sh
 ```
 
-
-Clean Postgres in console
-
-```sql
-delete from retail.products;
-```
-```sql
-delete from retail.customer_orders;
-```
-```sql
-delete from retail.vector_store;
-```
-
-
-Delete ValKey Data
 
 
 Delete Applications
@@ -294,9 +271,6 @@ done
 
 
 ```csv
-"sku3","Bread"
-"sku4","Milk"
-"sku5","Aged prunes"
 "sku6","All natural Bread"
 "sku7","Almond Nuts"
 "sku8","Apple"
