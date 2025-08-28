@@ -52,7 +52,8 @@ cf create-service p.rabbitmq on-demand-plan retail-messaging  -c '{ "plugins": {
 # ----------------
 # SCDF DataFlow
 
-cf create-service p-dataflow standard scdf
+cf target -s data-flow-demo
+cf create-service p-dataflow standard scdf -c '{"skipper": { "disk": "5GiB" }, "dataflow" : { "disk": "5GiB" }}'
 
  -c '{"services": ["retail-scdf-sql","retail-messagain"] }'
 
