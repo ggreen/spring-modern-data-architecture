@@ -34,7 +34,7 @@ spec:
                 secretKeyRef:
                   name: rabbitmq-default-user
                   key: password
-          image: cloudnativedata/retail-source-app:0.0.2-SNAPSHOT
+          image: cloudnativedata/retail-source-app:0.0.2
           name: retail-source-app
           #          imagePullPolicy: Always
           imagePullPolicy: IfNotPresent

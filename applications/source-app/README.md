@@ -2,7 +2,7 @@
 
 
 ```shell
-java -jar applications/retail-source-app/target/retail-source-app-0.0.2-SNAPSHOT.jar
+java -jar applications/retail-source-app/target/retail-source-app-0.0.2.jar
 ```
 
 ## Docker building image
@@ -14,8 +14,8 @@ mvn spring-boot:build-image
 ```
 
 ```shell
-docker tag retail-source-app:0.0.2-SNAPSHOT cloudnativedata/retail-source-app:0.0.2-SNAPSHOT
-docker push cloudnativedata/retail-source-app:0.0.2-SNAPSHOT
+docker tag retail-source-app:0.0.2 cloudnativedata/retail-source-app:0.0.2
+docker push cloudnativedata/retail-source-app:0.0.2
 ```
 
 

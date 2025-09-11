@@ -8,7 +8,7 @@
 		<version>3.5.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>spring.modern.data.architecture</groupId>
+	<groupId>com.github.ggreen</groupId>
 	<artifactId>valkey-console-app</artifactId>
 	<version>0.0.2</version>
 	<name>valkey-console-app</name>

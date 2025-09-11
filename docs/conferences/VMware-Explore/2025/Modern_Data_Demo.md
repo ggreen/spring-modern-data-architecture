@@ -179,8 +179,6 @@ retail-app=retail-web-app --server.port=80 --spring.profiles.active=valkey --ret
 
 Retail Web Application
 
-
-
 ```properties
 app.retail-web-app.retail.customer.id=nyla
 app.retail-web-app.server.port=80
@@ -200,7 +198,6 @@ app.retail-source.server.port=80
 deployer.retail-source.bootVersion=3
 deployer.retail-source.cloudfoundry.env.JBP_CONFIG_OPEN_JDK_JRE={jre: {version: 17.+}}
 deployer.retail-source.cloudfoundry.host=dataflow-retail-source
-deployer.retail-source.cloudfoundry.services=retail-sql,retail-ai-chat,retail-ai-embedding
 deployer.retail-source.cloudfoundry.memory=1400m
 deployer.retail-analytics.bootVersion=3
 deployer.retail-analytics.cloudfoundry.env.JBP_CONFIG_OPEN_JDK_JRE={jre: {version: 17.+}}

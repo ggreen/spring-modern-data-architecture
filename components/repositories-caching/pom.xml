@@ -8,9 +8,9 @@
 		<version>3.5.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>spring.modern.data.architecture</groupId>
+	<groupId>com.github.ggreen</groupId>
 	<artifactId>repositories-caching</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.2</version>
 	<name>repositories-caching</name>
 	<description>repositories-caching</description>
 	<properties>
@@ -24,9 +24,9 @@
 			<scope>test</scope>
 		</dependency>
         <dependency>
-            <groupId>spring.modern.data.architecture</groupId>
+            <groupId>com.github.ggreen</groupId>
             <artifactId>domains</artifactId>
-            <version>0.0.2-SNAPSHOT</version>
+            <version>0.0.2</version>
         </dependency>
 		<dependency>
 			<groupId>org.springframework.data</groupId>

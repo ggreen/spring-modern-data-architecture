@@ -141,14 +141,14 @@
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
         <dependency>
-            <groupId>spring.modern.data.architecture</groupId>
+            <groupId>com.github.ggreen</groupId>
             <artifactId>domains</artifactId>
-            <version>0.0.2-SNAPSHOT</version>
+            <version>0.0.2</version>
         </dependency>
         <dependency>
-            <groupId>spring.modern.data.architecture</groupId>
+            <groupId>com.github.ggreen</groupId>
             <artifactId>repositories-caching</artifactId>
-            <version>0.0.2-SNAPSHOT</version>
+            <version>0.0.2</version>
         </dependency>
 		<dependency>
 			<groupId>io.projectreactor</groupId>
@@ -156,19 +156,19 @@
 			<scope>test</scope>
 		</dependency>
         <dependency>
-            <groupId>spring.modern.data.architecture</groupId>
+            <groupId>com.github.ggreen</groupId>
             <artifactId>repositories-gemfire</artifactId>
-            <version>0.0.2-SNAPSHOT</version>
+            <version>0.0.2</version>
         </dependency>
 		<dependency>
-			<groupId>spring.modern.data.architecture</groupId>
+			<groupId>com.github.ggreen</groupId>
 			<artifactId>repositories-valkey</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
+			<version>0.0.2</version>
 		</dependency>
         <dependency>
-            <groupId>spring.modern.data.architecture</groupId>
+            <groupId>com.github.ggreen</groupId>
             <artifactId>events-gemfire</artifactId>
-            <version>0.0.2-SNAPSHOT</version>
+            <version>0.0.2</version>
         </dependency>
     </dependencies>
 	<dependencyManagement>

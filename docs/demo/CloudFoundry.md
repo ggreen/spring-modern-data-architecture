@@ -51,7 +51,7 @@ Register
 
 ```properties
 sink.retail-analytics=https://github.com/Tanzu-Solutions-Engineering/spring-modern-data-architecture/releases/download/cloud-foundry-6-5-2024/retail-analytics-app-0.0.3-SNAPSHOT.jar
-source.retail-source=https://github.com/Tanzu-Solutions-Engineering/spring-modern-data-architecture/releases/download/cloud-foundry-6-5-2024/retail-source-app-0.0.2-SNAPSHOT.jar
+source.retail-source=https://github.com/Tanzu-Solutions-Engineering/spring-modern-data-architecture/releases/download/cloud-foundry-6-5-2024/retail-source-app-0.0.2.jar
 sink.gemfire=docker://gemfire/gemfire-sink-rabbit:1.0.1
 source.gemfire=docker://gemfire/gemfire-source-rabbit:1.0.1
 
